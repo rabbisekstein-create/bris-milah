@@ -133,6 +133,8 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
       ["b_weeks",    "Weeks at birth"],
       ["b_delivery", "Type of birth"],
       ["b_jaundice", "Jaundice"],
+      ["b_bili",     "Bilirubin level"],
+      ["b_bilidate", "Bilirubin taken when"],
       ["b_nicu",     "NICU or special care"],
       ["b_vitk",     "Vitamin K given"],
       ["b_abnormal", "Abnormality noticed at birth"],
