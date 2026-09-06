@@ -793,3 +793,8 @@ p{ margin:0 0 1.15em; }
   margin:0 0 .4em; line-height:1.2;
 }
 .option p{ font-size:.92rem; margin:0; color:var(--ink-soft); }
+
+.source-note{
+  font-size:.86rem; color:var(--ink-soft); font-style:italic;
+  border-left:2px solid var(--line); padding-left:14px; margin-top:-4px;
+}
