@@ -168,17 +168,30 @@
       </div>
 
       <form class="sheet-form" id="babyForm" novalidate>
+
+        <h3 class="form-group">Your details</h3>
         <div class="field-row">
           <div class="field">
-            <label for="b_parent">Parents&rsquo; names</label>
+            <label for="b_parent">Father&rsquo;s name</label>
             <input type="text" id="b_parent" name="b_parent">
           </div>
+          <div class="field">
+            <label for="b_mother">Mother&rsquo;s name</label>
+            <input type="text" id="b_mother" name="b_mother">
+          </div>
+        </div>
+        <div class="field-row">
           <div class="field">
             <label for="b_phone">Best phone number</label>
             <input type="tel" id="b_phone" name="b_phone">
           </div>
+          <div class="field">
+            <label for="b_email">Email <span class="opt">(optional)</span></label>
+            <input type="email" id="b_email" name="b_email">
+          </div>
         </div>
 
+        <h3 class="form-group">The birth</h3>
         <div class="field-row">
           <div class="field">
             <label for="b_dob">Date of birth</label>
@@ -189,7 +202,6 @@
             <input type="time" id="b_tob" name="b_tob">
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="b_weight">Birth weight</label>
@@ -200,7 +212,6 @@
             <input type="text" id="b_weeks" name="b_weeks" placeholder="e.g. 39, or full term">
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="b_delivery">Type of birth</label>
@@ -212,12 +223,47 @@
             </select>
           </div>
           <div class="field">
+            <label for="b_hospital">Which hospital?</label>
+            <input type="text" id="b_hospital" name="b_hospital">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="b_home">Is the baby home yet?</label>
+            <select id="b_home" name="b_home">
+              <option value="">Please choose</option>
+              <option>Yes, home</option>
+              <option>Still in hospital</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="b_twin">Is he a twin?</label>
+            <select id="b_twin" name="b_twin">
+              <option value="">Please choose</option>
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 class="form-group">Health</h3>
+        <div class="field-row">
+          <div class="field">
             <label for="b_jaundice">Any jaundice?</label>
             <select id="b_jaundice" name="b_jaundice">
               <option value="">Please choose</option>
               <option>No</option>
               <option>Yes, mild</option>
               <option>Yes, treated with lights</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="b_vitk">Vitamin K given at birth?</label>
+            <select id="b_vitk" name="b_vitk">
+              <option value="">Please choose</option>
+              <option>Yes</option>
+              <option>No</option>
               <option>Not sure</option>
             </select>
           </div>
@@ -241,24 +287,9 @@
           one, say so and we will talk about it.
         </p>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="b_nicu">Any time in the NICU or special care?</label>
-            <select id="b_nicu" name="b_nicu">
-              <option value="">Please choose</option>
-              <option>No</option>
-              <option>Yes</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="b_vitk">Vitamin K given at birth?</label>
-            <select id="b_vitk" name="b_vitk">
-              <option value="">Please choose</option>
-              <option>Yes</option>
-              <option>No</option>
-              <option>Not sure</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="b_nicu">Any time in the NICU or special care?</label>
+          <input type="text" id="b_nicu" name="b_nicu" placeholder="No, or how long and why">
         </div>
 
         <div class="field">
@@ -276,6 +307,11 @@
           <textarea id="b_family" name="b_family" rows="2" placeholder="Haemophilia, von Willebrand, or anyone in the family who bleeds or bruises unusually easily. If none, write none."></textarea>
         </div>
 
+        <div class="field">
+          <label for="b_prevbris">Did an older brother have any trouble at his Bris?</label>
+          <textarea id="b_prevbris" name="b_prevbris" rows="2" placeholder="Bleeding, slow healing, a postponement. If this is your first son, or there was no trouble, say so."></textarea>
+        </div>
+
         <div class="field-row">
           <div class="field">
             <label for="b_ped">Pediatrician&rsquo;s name</label>
@@ -287,20 +323,76 @@
           </div>
         </div>
 
+        <h3 class="form-group">For the ceremony</h3>
         <div class="field-row">
-          <div class="field">
-            <label for="b_place">Where will the Bris be held?</label>
-            <input type="text" id="b_place" name="b_place" placeholder="Home, shul, hall, address">
-          </div>
           <div class="field">
             <label for="b_hebrew">Father&rsquo;s Hebrew name</label>
             <input type="text" id="b_hebrew" name="b_hebrew">
           </div>
+          <div class="field">
+            <label for="b_mhebrew">Mother&rsquo;s Hebrew name</label>
+            <input type="text" id="b_mhebrew" name="b_mhebrew">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="b_kohen">Is the father a Kohen, Levi or Yisrael?</label>
+            <select id="b_kohen" name="b_kohen">
+              <option value="">Please choose</option>
+              <option>Yisrael</option>
+              <option>Kohen</option>
+              <option>Levi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="b_mkohen">And the mother?</label>
+            <select id="b_mkohen" name="b_mkohen">
+              <option value="">Please choose</option>
+              <option>Bas Yisrael</option>
+              <option>Bas Kohen</option>
+              <option>Bas Levi</option>
+            </select>
+          </div>
         </div>
 
         <div class="field">
+          <label for="b_firstborn">Is he the mother&rsquo;s first child?</label>
+          <select id="b_firstborn" name="b_firstborn">
+            <option value="">Please choose</option>
+            <option>Yes, first child</option>
+            <option>No</option>
+            <option>First son, but not first pregnancy</option>
+          </select>
+        </div>
+
+        <p class="field-note">
+          These three questions are about a Pidyon Haben, which takes place on the thirty-first
+          day if he is a firstborn son to his mother, born naturally, and the father is not a
+          Kohen or Levi. It is a separate occasion from the Bris. I ask now so that if one is
+          needed, you are told well in advance rather than the week it falls due.
+        </p>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="b_place">Where will the Bris be held?</label>
+            <input type="text" id="b_place" name="b_place" placeholder="Full address of the home, shul or hall">
+          </div>
+          <div class="field">
+            <label for="b_time">What time of the morning suits you?</label>
+            <input type="text" id="b_time" name="b_time" placeholder="e.g. after shacharis, around 9:30">
+          </div>
+        </div>
+
+        <h3 class="form-group">Anything else</h3>
+        <div class="field">
           <label for="b_notes">Anything else I should know</label>
           <textarea id="b_notes" name="b_notes" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="b_heard">How did you hear about me? <span class="opt">(optional)</span></label>
+          <input type="text" id="b_heard" name="b_heard">
         </div>
 
         <div class="form-actions no-print">

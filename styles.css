@@ -804,3 +804,10 @@ p{ margin:0 0 1.15em; }
   background:var(--cream); border-left:2px solid var(--gold);
   padding:14px 16px; margin:4px 0 22px; border-radius:2px;
 }
+
+.form-group{
+  font-family:var(--sans); font-size:.72rem; letter-spacing:.2em;
+  text-transform:uppercase; font-weight:600; color:var(--gold);
+  margin:34px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--line);
+}
+.sheet-form .form-group:first-child{ margin-top:0; }
