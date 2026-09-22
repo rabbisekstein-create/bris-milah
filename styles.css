@@ -656,6 +656,8 @@ p{ margin:0 0 1.15em; }
    ========================================================================== */
 .js .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
 .js .reveal.visible{ opacity:1; transform:none; }
+/* The first screen shows at once; only content further down fades in. */
+.js .hero .reveal{ opacity:1; transform:none; transition:none; }
 
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
