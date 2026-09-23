@@ -150,9 +150,9 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
       ["b_pedphone",  "Pediatrician phone"],
       ["b_hebrew",    "Father's Hebrew name"],
       ["b_mhebrew",   "Mother's Hebrew name"],
+      ["b_firstborn", "First child"],
       ["b_kohen",     "Father is"],
       ["b_mkohen",    "Mother is"],
-      ["b_firstborn", "First child"],
       ["b_place",     "Where the Bris will be held"],
       ["b_time",      "Preferred time"],
       ["b_notes",     "Anything else"],
@@ -161,12 +161,25 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
 
     var babyNote = document.getElementById("babyNote");
 
+    // Pidyon Haben questions only appear when he is the mother's first child.
+    var firstborn = document.getElementById("b_firstborn");
+    var pidyonBlock = document.getElementById("pidyonBlock");
+    var pidyonShown = function () {
+      return !firstborn || firstborn.value === "Yes";
+    };
+    var updatePidyon = function () {
+      if (pidyonBlock) pidyonBlock.hidden = !pidyonShown();
+    };
+    if (firstborn) firstborn.addEventListener("change", updatePidyon);
+    updatePidyon();
+
     var babyMessage = function () {
       var lines = ["About the baby - sent from bris-milah.com", ""];
       var answered = 0;
       babyFields.forEach(function (pair) {
         var el = document.getElementById(pair[0]);
         var v = el ? el.value.trim() : "";
+        if (v && pidyonBlock && pidyonBlock.contains(el) && !pidyonShown()) v = "";
         if (v) {
           answered++;
           lines.push(pair[1] + ": " + v);
