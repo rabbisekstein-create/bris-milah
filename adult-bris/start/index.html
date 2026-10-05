@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adult Bris Milah — Let's Speak | Rabbi Shlome Ekstein, Certified Mohel</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#16233d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#16233d;--navy-2:#24365a;--gold:#b08d57;--gold-soft:#f4ecdf;--ink:#1f2633;--muted:#5d6676;--line:#dfe3ea;--bg:#f7f6f2;--err:#b3261e;--warn-bg:#fff6e5;--warn:#7a5200}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+header{background:var(--navy);color:#fff;padding:22px 16px 26px;text-align:center}
+header .name{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:600}
+header .sub{opacity:.75;font-size:.85rem}
+main{max-width:640px;margin:-14px auto 40px;padding:0 16px}
+.card{background:#fff;border-radius:14px;box-shadow:0 2px 14px rgba(22,35,61,.08);padding:28px 26px}
+@media(max-width:560px){.card{padding:22px 16px}}
+h1{font-family:"Cormorant Garamond",serif;color:var(--navy);font-weight:600;font-size:2rem;line-height:1.2;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 20px}
+.f{margin:0 0 18px}
+.f>label,.q{display:block;font-weight:500;margin-bottom:6px}
+.req::after{content:" *";color:var(--gold)}
+.hint{font-size:.85rem;color:var(--muted);margin:-2px 0 6px}
+input[type=text],input[type=tel],select,textarea{width:100%;padding:11px 12px;border:1px solid #cdd3dd;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{display:flex;align-items:center;gap:8px;border:1px solid #cdd3dd;border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:400;margin:0}
+.opts label:has(input:checked){border-color:var(--navy);background:#eef1f7}
+.opts input{accent-color:var(--navy);margin:0}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--navy);flex:none}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+.invalid input,.invalid select,.invalid .opts label{border-color:var(--err)}
+.errmsg{color:var(--err);font-size:.83rem;margin-top:5px;display:none}.invalid .errmsg{display:block}
+.warn{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:12px 14px;font-size:.9rem;margin:-6px 0 18px}
+.notice{background:var(--gold-soft);border-radius:10px;padding:12px 14px;font-size:.88rem;margin:0 0 20px}
+button{font:inherit;font-weight:600;border-radius:10px;padding:13px 24px;cursor:pointer;border:1px solid var(--navy);background:var(--navy);color:#fff;width:100%}
+button:disabled{opacity:.6}
+.hp{position:absolute;left:-9999px}
+#done{display:none;text-align:center}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:0 16px 30px}
+footer a{color:var(--navy)}
+</style>
+</head>
+<body>
+<header><div class="name">Rabbi Shlome Ekstein</div><div class="sub">Certified Mohel · Bris Milah for Infants and Adults</div></header>
+<main><div class="card">
+
+<form id="f" novalidate>
+  <h1>Let's speak</h1>
+  <p class="lead">Leave your details and I'll call you personally. No obligation — the first conversation commits you to nothing.</p>
+  <div class="notice">Please don't include any medical details here. We'll go over everything privately on the phone.</div>
+
+  <div class="row">
+    <div class="f"><label class="req" for="name">Your name</label><input type="text" id="name" name="Name" required autocomplete="name"><div class="errmsg">Required</div></div>
+    <div class="f"><label class="req" for="phone">Phone</label><input type="tel" id="phone" name="Phone" required autocomplete="tel"><div class="errmsg">Required</div></div>
+  </div>
+
+  <div class="f"><div class="q req">Best way to reach you</div>
+    <div class="opts"><label><input type="radio" name="Contact by" value="Phone call" required> Phone call</label><label><input type="radio" name="Contact by" value="Text message"> Text</label><label><input type="radio" name="Contact by" value="WhatsApp"> WhatsApp</label></div>
+    <div class="errmsg">Please choose one</div></div>
+
+  <div class="f"><label for="times">Good times to call / OK to leave a voicemail?</label><input type="text" id="times" name="Call times" placeholder="e.g. After 6pm, no voicemail please"></div>
+
+  <div class="f"><div class="q req">Bris milah is performed only as a Jewish religious rite. Which describes you?</div>
+    <div class="opts"><label><input type="radio" name="Background" value="Jewish" required> I am Jewish</label><label><input type="radio" name="Background" value="Converting"> I am converting to Judaism</label><label><input type="radio" name="Background" value="Not sure"> Not sure</label><label><input type="radio" name="Background" value="Neither"> Neither</label></div>
+    <div class="errmsg">Please choose one</div></div>
+  <div class="warn" id="neither" hidden>Thank you for your interest. Rabbi Ekstein performs bris milah only for religious purposes, so he isn't able to help with a circumcision for other reasons. A urologist or your doctor can help with that.</div>
+
+  <div class="f"><div class="q req">When would you like it?</div>
+    <div class="opts"><label><input type="radio" name="When" value="As soon as possible" required> As soon as possible</label><label><input type="radio" name="When" value="Within 1-2 months"> Within 1–2 months</label><label><input type="radio" name="When" value="Within 6 months"> Within 6 months</label><label><input type="radio" name="When" value="Just exploring"> Just exploring</label></div>
+    <div class="errmsg">Please choose one</div></div>
+
+  <div class="row">
+    <div class="f"><label for="city">City / country</label><input type="text" id="city" name="City"></div>
+    <div class="f"><label for="lang">Preferred language</label><select id="lang" name="Language"><option>English</option><option>Hebrew</option><option>Yiddish</option><option>Russian</option><option>Spanish</option><option>Other</option></select></div>
+  </div>
+
+  <div class="f"><label for="ref">Did someone refer you? (optional)</label><input type="text" id="ref" name="Referred by" placeholder="Name and position, e.g. Rabbi Cohen"></div>
+
+  <div class="f"><label class="check"><input type="checkbox" name="Cost" value="Would like to talk privately about cost"> I'd like to talk privately about cost</label>
+    <div class="hint" style="margin:6px 0 0 28px">The usual fee is $1,800–$2,000. If cost is a real obstacle, we can talk privately about a sponsor.</div></div>
+
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+  <button type="submit" id="send">Send — Rabbi Ekstein will call you</button>
+  <p class="hint" style="margin-top:12px;text-align:center">Prefer to call now? <a href="tel:+18454678595">845-467-8595</a></p>
+</form>
+
+<div id="done">
+  <h1>Thank you</h1>
+  <p class="lead">Rabbi Ekstein will call you personally, usually within one to two days.</p>
+  <p>Any question in the meantime: <a href="tel:+18454678595">845-467-8595</a></p>
+</div>
+
+</div></main>
+<footer>Rabbi Shlome Ekstein, Certified Mohel · <a href="https://bris-milah.com/">bris-milah.com</a></footer>
+
+<script>
+/* Web3Forms access key — sign up free at web3forms.com with the email you want the
+   messages sent to, then paste the key it emails you here. (It is meant to be public.) */
+const ACCESS_KEY = "1954278b-98e4-4242-99fc-b24f83e7f386";
+
+const f = document.getElementById('f');
+const val = n => { const c=f.querySelector(`[name="${n}"]:checked`); return c?c.value:''; };
+f.addEventListener('change', e=>{
+  document.getElementById('neither').hidden = val('Background')!=='Neither';
+  const box=e.target.closest('.f'); if(box) box.classList.remove('invalid');
+});
+f.addEventListener('input', e=>{ const box=e.target.closest('.f'); if(box) box.classList.remove('invalid'); });
+
+f.addEventListener('submit', async e=>{
+  e.preventDefault();
+  let first=null, seen=new Set();
+  f.querySelectorAll('[required]').forEach(el=>{
+    const box=el.closest('.f'); let bad;
+    if(el.type==='radio'){ if(seen.has(el.name)) return; seen.add(el.name); bad=!val(el.name); }
+    else bad=!el.value.trim();
+    if(bad){ box.classList.add('invalid'); first=first||box; }
+  });
+  if(first){ first.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  if(val('Background')==='Neither'){ document.getElementById('neither').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+  const btn=document.getElementById('send'); btn.disabled=true; btn.textContent='Sending…';
+  const data = Object.fromEntries(new FormData(f));
+  data.access_key = ACCESS_KEY;
+  data.subject = `New call request: ${data.Name} — ${data.When}`;
+  data.from_name = 'bris-milah.com';
+  try{
+    if(ACCESS_KEY.startsWith('PASTE')) throw new Error('No access key set yet');
+    const r = await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
+    const j = await r.json(); if(!j.success) throw new Error(j.message||'failed');
+    f.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0});
+  }catch(err){
+    btn.disabled=false; btn.textContent='Send — Rabbi Ekstein will call you';
+    alert('Sorry, the message could not be sent. Please call 845-467-8595.');
+  }
+});
+</script>
+</body>
+</html>
