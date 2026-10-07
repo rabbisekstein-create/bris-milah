@@ -385,6 +385,37 @@
     </div>
   </section>
 
+  <section class="section section-tint" id="callback">
+    <div class="wrap narrow">
+      <form class="contact-form quick-form reveal" novalidate
+        data-subject="Adult bris - call request" data-sending="Sending..." data-ok="Thank you. I will call you soon, discreetly." data-err="Sorry, it could not be sent. Please call 845-467-8595 or WhatsApp 347-831-6196." data-missing="Please add your name and a phone number so I can reach you." data-sent="Sent">
+        <h2 class="form-title">Prefer not to call yet?</h2>
+        <p>Leave your name and number, and I will call you myself, at a time that suits you. Only I see this.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="qf_name">Your name</label>
+            <input type="text" id="qf_name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="qf_phone">Phone</label>
+            <input type="tel" id="qf_phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="qf_time">Best time to call <span class="opt">(optional)</span></label>
+          <input type="text" id="qf_time" name="best_time" placeholder="e.g. evenings, after 6pm">
+        </div>
+        <div class="field">
+          <label for="qf_msg">Message <span class="opt">(optional)</span></label>
+          <textarea id="qf_msg" name="message" rows="3" placeholder="Anything you would like me to know first."></textarea>
+        </div>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        <button class="btn btn-primary btn-block" type="submit">Ask me to call you</button>
+        <p class="form-note">Private. Please don’t include medical details here; we can talk about those by phone.</p>
+      </form>
+    </div>
+  </section>
+
   <section class="section section-dark">
     <div class="wrap narrow center">
       <h2 class="reveal">One conversation.</h2>

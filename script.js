@@ -225,7 +225,7 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
     if (babyWaBtn) babyWaBtn.addEventListener("click", function () { babySend("whatsapp"); });
   }
 
-  /* ---------- Contact form -> pre-filled email ---------- */
+  /* ---------- Contact form -> Web3Forms ---------- */
   var form = document.getElementById("contactForm");
   var note = document.getElementById("formNote");
   if (!form) return;
@@ -277,13 +277,46 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
       value("message") || "-"
     ];
 
-    var href =
-      "mailto:" + CONTACT_EMAIL +
-      "?subject=" + encodeURIComponent("Website enquiry - " + value("type") + " - " + name) +
-      "&body=" + encodeURIComponent(lines.join("\n"));
+    var bot = document.getElementById("botcheck");
+    if (bot && bot.checked) return; // spam trap
 
-    window.location.href = href;
-    setNote("Opening your email app. If nothing happens, please call or WhatsApp instead.", "ok");
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+    setNote("Sending your message...", "");
+
+    var payload = {
+      access_key: "1954278b-98e4-4242-99fc-b24f83e7f386",
+      subject: "Website enquiry - " + value("type") + " - " + name,
+      from_name: "bris-milah.com",
+      name: name,
+      phone: phone,
+      email: value("email") || "-",
+      regarding: value("type"),
+      location: value("location") || "-",
+      date: value("date") || "-",
+      message: value("message") || "-",
+      page: window.location.pathname
+    };
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.success) {
+          form.reset();
+          setNote("Thank you, your message was sent. I will call you back soon.", "ok");
+          if (btn) btn.textContent = "Message sent";
+        } else {
+          throw new Error("fail");
+        }
+      })
+      .catch(function () {
+        setNote("Sorry, the message could not be sent. Please call 845-467-8595 or WhatsApp 347-831-6196.", "err");
+        if (btn) { btn.disabled = false; btn.textContent = "Send message"; }
+      });
   });
 
   ["name", "phone"].forEach(function (id) {
@@ -293,5 +326,72 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
         el.classList.remove("invalid");
       });
     }
+  });
+})();
+
+/* ---------- Quick call-back forms (adult pages) -> Web3Forms ---------- */
+(function () {
+  var forms = document.querySelectorAll("form.quick-form");
+  Array.prototype.forEach.call(forms, function (form) {
+    var note = form.querySelector(".form-note");
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : "";
+    var d = form.dataset;
+    var setNote = function (text, kind) {
+      if (!note) return;
+      note.textContent = text;
+      note.className = "form-note" + (kind ? " " + kind : "");
+    };
+    var field = function (name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      return el;
+    };
+    var val = function (name) {
+      var el = field(name);
+      return el ? el.value.trim() : "";
+    };
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bot = field("botcheck");
+      if (bot && bot.checked) return;
+      var missing = null;
+      ["name", "phone"].forEach(function (n) {
+        var el = field(n);
+        if (!val(n)) { if (el) el.classList.add("invalid"); if (!missing) missing = el; }
+        else if (el) el.classList.remove("invalid");
+      });
+      if (missing) { setNote(d.missing, "err"); missing.focus(); return; }
+
+      if (btn) { btn.disabled = true; btn.textContent = d.sending; }
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: "1954278b-98e4-4242-99fc-b24f83e7f386",
+          subject: d.subject + " - " + val("name"),
+          from_name: "bris-milah.com",
+          name: val("name"),
+          phone: val("phone"),
+          best_time: val("best_time") || "-",
+          message: val("message") || "-",
+          page: window.location.pathname
+        })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.success) throw new Error("fail");
+          form.reset();
+          setNote(d.ok, "ok");
+          if (btn) btn.textContent = d.sent;
+        })
+        .catch(function () {
+          setNote(d.err, "err");
+          if (btn) { btn.disabled = false; btn.textContent = btnText; }
+        });
+    });
+    ["name", "phone"].forEach(function (n) {
+      var el = field(n);
+      if (el) el.addEventListener("input", function () { el.classList.remove("invalid"); });
+    });
   });
 })();
