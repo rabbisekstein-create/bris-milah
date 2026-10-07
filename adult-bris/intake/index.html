@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adult Bris Milah — Confidential Intake | Rabbi Shlome Ekstein, Certified Mohel</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#16233d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16233d; --navy-2:#24365a; --gold:#b08d57; --gold-soft:#f4ecdf;
+  --ink:#1f2633; --muted:#5d6676; --line:#dfe3ea; --bg:#f7f6f2; --card:#fff;
+  --err:#b3261e; --ok:#2e6b3f; --warn-bg:#fff6e5; --warn:#7a5200;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+header{background:var(--navy);color:#fff;padding:22px 16px 26px;text-align:center}
+header .name{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:600;letter-spacing:.3px}
+header .sub{opacity:.75;font-size:.85rem;margin-top:2px}
+main{max-width:760px;margin:-14px auto 40px;padding:0 16px}
+.card{background:var(--card);border-radius:14px;box-shadow:0 2px 14px rgba(22,35,61,.08);padding:28px 26px}
+@media(max-width:560px){.card{padding:22px 16px}}
+h1,h2{font-family:"Cormorant Garamond",serif;color:var(--navy);font-weight:600;line-height:1.2}
+h1{font-size:2rem;margin:0 0 10px}
+h2{font-size:1.55rem;margin:0 0 4px}
+h3{font-size:1rem;margin:26px 0 8px;color:var(--navy-2);border-bottom:1px solid var(--line);padding-bottom:6px}
+.lead{color:var(--muted);margin:0 0 18px}
+/* progress */
+.progress{display:flex;gap:6px;margin:0 0 6px}
+.progress span{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.progress span.done{background:var(--gold)}
+.stepnote{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+/* fields */
+.f{margin:0 0 18px}
+.f>label,.f>.q{display:block;font-weight:500;margin-bottom:6px}
+.req::after{content:" *";color:var(--gold)}
+.hint{font-size:.83rem;color:var(--muted);margin:-2px 0 6px}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  width:100%;padding:11px 12px;border:1px solid #cdd3dd;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:560px){.row,.row3{grid-template-columns:1fr}}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{display:flex;align-items:center;gap:8px;border:1px solid #cdd3dd;border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:400;background:#fff}
+.opts label:has(input:checked){border-color:var(--navy);background:#eef1f7}
+.opts input{accent-color:var(--navy);margin:0}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.check input{margin-top:4px;accent-color:var(--navy);width:18px;height:18px;flex:none}
+.sub-block{border-left:3px solid var(--gold-soft);padding-left:14px;margin:-6px 0 18px}
+.invalid input,.invalid select,.invalid textarea,.invalid .opts label{border-color:var(--err)}
+.errmsg{color:var(--err);font-size:.83rem;margin-top:5px;display:none}
+.invalid .errmsg{display:block}
+.notice{background:var(--gold-soft);border-radius:10px;padding:14px 16px;font-size:.92rem;margin:0 0 20px}
+.warn{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:12px 14px;font-size:.9rem;margin:6px 0 18px;display:none}
+.warn.show{display:block}
+/* nav */
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
+button{font:inherit;font-weight:600;border-radius:10px;padding:12px 22px;cursor:pointer;border:1px solid var(--navy)}
+.primary{background:var(--navy);color:#fff}
+.primary:hover{background:var(--navy-2)}
+.ghost{background:#fff;color:var(--navy)}
+.step{display:none}
+.step.active{display:block}
+/* review */
+.review dl{margin:0 0 6px;display:grid;grid-template-columns:minmax(140px,38%) 1fr;gap:6px 14px;font-size:.92rem}
+.review dt{color:var(--muted)}
+.review dd{margin:0;white-space:pre-wrap;word-break:break-word}
+.review h4{margin:20px 0 8px;color:var(--navy);font-size:.95rem;display:flex;justify-content:space-between}
+.review h4 a{font-weight:500;font-size:.82rem;color:var(--gold);cursor:pointer}
+.flags{margin:0;padding-left:20px}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:0 16px 30px}
+footer a{color:var(--navy)}
+@media print{
+  header,.nav,.progress,.stepnote,.no-print,footer{display:none!important}
+  body{background:#fff} .card{box-shadow:none;padding:0} main{margin:0;max-width:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="name">Rabbi Shlome Ekstein</div>
+  <div class="sub">Certified Mohel · Bris Milah for Infants and Adults</div>
+</header>
+
+<main>
+<form class="card" id="intake" novalidate>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="stepnote" id="stepnote"></div>
+
+  <!-- STEP 0: WELCOME -->
+  <section class="step active" data-title="Welcome">
+    <h1>Adult Bris Milah — Confidential Intake</h1>
+    <p class="lead">Thank you for reaching out. Choosing a bris as an adult takes real courage and commitment, and it is a privilege to help you enter the covenant of Avraham Avinu.</p>
+    <div class="notice">
+      <strong>What to expect.</strong> Bris milah is performed here only as a Jewish religious rite, for Jewish men and those converting to Judaism. This form takes about 10 minutes. It has four short parts: about you, your bris, your medical history, and scheduling. Everything you share is kept private and is seen only by Rabbi Ekstein and, where needed for your safety, a reviewing physician.
+    </div>
+    <p>After you submit, Rabbi Ekstein will personally call you to talk things through and answer every question — nothing is scheduled until you've spoken. This form is <strong>not</strong> a commitment and not a consent to the procedure.</p>
+    <p>Prefer to talk first? Call <a href="tel:+18454678595">845-467-8595</a>.</p>
+  </section>
+
+  <!-- STEP 1: ABOUT YOU -->
+  <section class="step" data-title="About you">
+    <h2>About you</h2>
+    <p class="lead">So we can reach you and keep you safe on the day.</p>
+    <div class="row">
+      <div class="f"><label class="req" for="first_name">First name</label><input type="text" id="first_name" name="first_name" required autocomplete="given-name"><div class="errmsg">Required</div></div>
+      <div class="f"><label class="req" for="last_name">Last name</label><input type="text" id="last_name" name="last_name" required autocomplete="family-name"><div class="errmsg">Required</div></div>
+    </div>
+    <div class="row">
+      <div class="f"><label for="hebrew_name">Hebrew name (if you have one)</label><input type="text" id="hebrew_name" name="hebrew_name"><div class="hint">Not required — many people choose one at the bris.</div></div>
+      <div class="f"><label class="req" for="dob">Date of birth (DOB)</label><input type="date" id="dob" name="dob" required><div class="errmsg">Required</div></div>
+    </div>
+    <div class="warn" id="ageWarn">This form is for adults 18 and older. For a younger person, please call <a href="tel:+18454678595">845-467-8595</a> directly.</div>
+    <div class="row">
+      <div class="f"><label class="req" for="phone">Mobile phone</label><input type="tel" id="phone" name="phone" required autocomplete="tel"><div class="errmsg">Required</div></div>
+      <div class="f"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"><div class="errmsg">Please check the email address</div></div>
+    </div>
+    <div class="f"><div class="q req">Best way to reach you</div>
+      <div class="opts" data-group="contact_pref">
+        <label><input type="radio" name="contact_pref" value="Phone call" required> Phone call</label>
+        <label><input type="radio" name="contact_pref" value="Text message"> Text message</label>
+        <label><input type="radio" name="contact_pref" value="WhatsApp"> WhatsApp</label>
+        <label><input type="radio" name="contact_pref" value="Email"> Email</label>
+      </div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><label for="contact_notes">Is it OK to leave a voicemail or message? Any times not to call?</label><input type="text" id="contact_notes" name="contact_notes" placeholder="e.g. No voicemail please; best after 6pm"></div>
+    <div class="row">
+      <div class="f"><label class="req" for="language">Preferred language</label>
+        <select id="language" name="language" required>
+          <option value="">Choose…</option><option>English</option><option>Hebrew</option><option>Yiddish</option><option>Russian</option><option>Spanish</option><option>Other</option>
+        </select><div class="errmsg">Required</div></div>
+      <div class="f"><label class="req" for="location">City, state / country</label><input type="text" id="location" name="location" required><div class="errmsg">Required</div></div>
+    </div>
+    <h3>Emergency contact</h3>
+    <div class="row3">
+      <div class="f"><label class="req" for="ec_name">Emergency contact name</label><input type="text" id="ec_name" name="ec_name" required><div class="errmsg">Required</div></div>
+      <div class="f"><label class="req" for="ec_rel">Relationship to you</label><input type="text" id="ec_rel" name="ec_rel" required><div class="errmsg">Required</div></div>
+      <div class="f"><label class="req" for="ec_phone">Their phone</label><input type="tel" id="ec_phone" name="ec_phone" required><div class="errmsg">Required</div></div>
+    </div>
+    <div class="f"><label for="heard">How did you hear about Rabbi Ekstein?</label>
+      <select id="heard" name="heard"><option value="">Choose…</option><option>A rabbi or teacher</option><option>Friend or family</option><option>Google search</option><option>Website</option><option>Beis din / conversion program</option><option>Other</option></select></div>
+  </section>
+
+  <!-- STEP 2: YOUR BRIS -->
+  <section class="step" data-title="Your bris">
+    <h2>Your bris</h2>
+    <p class="lead">Just a couple of quick questions. Anything else, we'll talk about on the phone.</p>
+    <div class="f"><div class="q req">Rabbi Ekstein performs bris milah only as a Jewish religious rite. Which describes you?</div>
+      <div class="opts"><label><input type="radio" name="eligibility" value="I am Jewish" required> I am Jewish</label><label><input type="radio" name="eligibility" value="I am converting to Judaism"> I am converting to Judaism</label><label><input type="radio" name="eligibility" value="Not sure"> Not sure</label><label><input type="radio" name="eligibility" value="Neither"> Neither</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="warn" data-show-if="eligibility=Neither" id="eligWarn">Thank you for your interest. Rabbi Ekstein performs bris milah only for religious purposes — for Jewish men and those converting to Judaism — so he isn't able to help with a circumcision for other reasons. A urologist or your doctor can help you with that.</div>
+    <div class="warn" data-show-if="eligibility=Not sure">That's fine — many people aren't sure. Continue, and Rabbi Ekstein will talk it through with you.</div>
+    <div class="f"><div class="q req">Have you ever had a circumcision (medical or otherwise)?</div>
+      <div class="opts"><label><input type="radio" name="prior_circ" value="No" required> No</label><label><input type="radio" name="prior_circ" value="Yes"> Yes</label><label><input type="radio" name="prior_circ" value="Not sure"> Not sure</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="sub-block" data-show-if="prior_circ=Yes">
+      <div class="f"><div class="q">What are you looking for?</div>
+        <div class="hint">Hatafas dam bris is a drop of blood taken to complete the covenant when a prior circumcision was done without a bris. A correction is needed when the earlier circumcision was not done fully according to halacha. Not sure? That's fine — we'll figure it out together.</div>
+        <div class="opts"><label><input type="radio" name="bris_type" value="Hatafas dam bris"> Hatafas dam bris</label><label><input type="radio" name="bris_type" value="Correction"> Correction</label><label><input type="radio" name="bris_type" value="Not sure"> Not sure</label></div></div>
+    </div>
+    <div class="f"><div class="q">Did someone refer you?</div>
+      <div class="opts"><label><input type="radio" name="referred" value="Yes"> Yes</label><label><input type="radio" name="referred" value="No"> No</label></div></div>
+    <div class="sub-block" data-show-if="referred=Yes">
+      <div class="row3">
+        <div class="f"><label for="ref_name">Referrer's name</label><input type="text" id="ref_name" name="ref_name"></div>
+        <div class="f"><label for="ref_title">Position (e.g. Rabbi, friend)</label><input type="text" id="ref_title" name="ref_title"></div>
+        <div class="f"><label for="ref_contact">Contact (optional)</label><input type="text" id="ref_contact" name="ref_contact"></div>
+      </div>
+    </div>
+    <div class="f"><label for="inspired">Did something inspire you to do this now? <span style="font-weight:400;color:var(--muted)">(optional — only if you'd like to share)</span></label><textarea id="inspired" name="inspired"></textarea></div>
+    <div class="f"><label for="about_me">Anything you'd like to tell me about yourself? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="about_me" name="about_me" placeholder="Only if you want to — we can also just talk on the phone."></textarea></div>
+    <div class="f"><label for="worries">Is there anything you're worried or nervous about? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="worries" name="worries" placeholder="Pain, recovery, time off work, privacy, cost — anything at all"></textarea></div>
+  </section>
+
+  <!-- STEP 3: MEDICAL -->
+  <section class="step" data-title="Medical history">
+    <h2>Medical history</h2>
+    <p class="lead">The procedure is done under local anesthesia. These questions keep you safe — please answer honestly. If you're not sure about something, say so.</p>
+
+    <h3>General health</h3>
+    <div class="f" data-yn="cond_current"><div class="q req">Do you have any current medical conditions?</div>
+      <div class="opts"><label><input type="radio" name="cond_current" value="No" required> No</label><label><input type="radio" name="cond_current" value="Yes"> Yes</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="sub-block" data-show-if="cond_current=Yes"><div class="f"><label class="req" for="cond_current_d">Please list them</label><textarea id="cond_current_d" name="cond_current_d" required></textarea><div class="errmsg">Please list them</div></div></div>
+
+    <div class="f"><div class="q req">Have you had any significant medical conditions in the past?</div>
+      <div class="opts"><label><input type="radio" name="cond_past" value="No" required> No</label><label><input type="radio" name="cond_past" value="Yes"> Yes</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="sub-block" data-show-if="cond_past=Yes"><div class="f"><label for="cond_past_d">Details</label><textarea id="cond_past_d" name="cond_past_d"></textarea></div></div>
+
+    <div class="f"><div class="q req">Do any of these apply to you?</div><div class="hint">Check all that apply.</div>
+      <div class="opts" data-group="conditions">
+        <label><input type="checkbox" name="conditions" value="Diabetes"> Diabetes</label>
+        <label><input type="checkbox" name="conditions" value="Heart condition / pacemaker"> Heart condition / pacemaker</label>
+        <label><input type="checkbox" name="conditions" value="High blood pressure"> High blood pressure</label>
+        <label><input type="checkbox" name="conditions" value="Weakened immune system / long-term steroids"> Weakened immune system / long-term steroids</label>
+        <label><input type="checkbox" name="conditions" value="Skin condition (e.g. eczema, psoriasis)"> Skin condition (eczema, psoriasis)</label>
+        <label><input type="checkbox" name="conditions" value="Fainting history"> I tend to faint (blood, needles, pain)</label>
+        <label><input type="checkbox" name="conditions" value="Current urinary problem or infection"> Current urinary problem or infection</label>
+        <label><input type="checkbox" name="conditions" value="None of these" data-exclusive> None of these</label>
+      </div><div class="errmsg">Please check at least one (or "None of these")</div></div>
+    <div class="sub-block" data-show-if="conditions=Diabetes"><div class="f"><label for="diabetes_d">How well controlled is it? Most recent A1c if you know it.</label><input type="text" id="diabetes_d" name="diabetes_d"></div></div>
+
+    <h3>Bleeding</h3>
+    <div class="f"><div class="q req">Do you or any blood relative have a bleeding or clotting disorder (e.g. hemophilia, von Willebrand)?</div>
+      <div class="opts"><label><input type="radio" name="bleeding_disorder" value="No" required> No</label><label><input type="radio" name="bleeding_disorder" value="Yes — me"> Yes — me</label><label><input type="radio" name="bleeding_disorder" value="Yes — a relative"> Yes — a relative</label><label><input type="radio" name="bleeding_disorder" value="Not sure"> Not sure</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><div class="q req">Do you bruise easily, or have you bled a lot after a cut, dental work or surgery?</div>
+      <div class="opts"><label><input type="radio" name="easy_bleed" value="No" required> No</label><label><input type="radio" name="easy_bleed" value="Yes"> Yes</label><label><input type="radio" name="easy_bleed" value="Not sure"> Not sure</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><div class="q req">Blood thinners (e.g. warfarin/Coumadin, Eliquis, Xarelto, Plavix)</div>
+      <div class="opts"><label><input type="radio" name="anticoag" value="Never" required> Never taken</label><label><input type="radio" name="anticoag" value="In the past"> Took in the past</label><label><input type="radio" name="anticoag" value="Currently"> Taking now</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="sub-block" data-show-if="anticoag=In the past|Currently"><div class="f"><label class="req" for="anticoag_d">Which one, why, and when did you stop (if you stopped)?</label><input type="text" id="anticoag_d" name="anticoag_d" required><div class="errmsg">Required</div></div></div>
+    <div class="warn" id="anticoagWarn" data-show-if="anticoag=Currently">Do <strong>not</strong> stop a prescribed blood thinner on your own. Rabbi Ekstein will coordinate with your doctor.</div>
+    <div class="f"><div class="q">In the last two weeks have you taken any of these?</div><div class="hint">These can increase bleeding. Check all that apply.</div>
+      <div class="opts">
+        <label><input type="checkbox" name="otc" value="Aspirin"> Aspirin</label>
+        <label><input type="checkbox" name="otc" value="Ibuprofen (Advil/Motrin)"> Ibuprofen (Advil, Motrin)</label>
+        <label><input type="checkbox" name="otc" value="Naproxen (Aleve)"> Naproxen (Aleve)</label>
+        <label><input type="checkbox" name="otc" value="Fish oil / Omega-3"> Fish oil / Omega-3</label>
+        <label><input type="checkbox" name="otc" value="Vitamin E"> Vitamin E</label>
+        <label><input type="checkbox" name="otc" value="Ginkgo / garlic / turmeric supplements"> Ginkgo, garlic or turmeric supplements</label>
+      </div></div>
+
+    <h3>Medications &amp; allergies</h3>
+    <div class="f"><label class="req" for="meds">Medications you take regularly (name, dose, how often)</label><textarea id="meds" name="meds" required placeholder="Write &quot;None&quot; if none"></textarea><div class="errmsg">Required — write "None" if none</div></div>
+    <div class="f"><div class="q req">Have you ever had a bad reaction to a local anesthetic (e.g. at the dentist — lidocaine, Novocain)?</div>
+      <div class="opts"><label><input type="radio" name="anesthetic_rx" value="No" required> No</label><label><input type="radio" name="anesthetic_rx" value="Yes"> Yes</label><label><input type="radio" name="anesthetic_rx" value="Never had one"> Never had one</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="sub-block" data-show-if="anesthetic_rx=Yes"><div class="f"><label for="anesthetic_rx_d">What happened?</label><input type="text" id="anesthetic_rx_d" name="anesthetic_rx_d"></div></div>
+    <div class="f"><label class="req" for="drug_allergies">Medication allergies</label><input type="text" id="drug_allergies" name="drug_allergies" required placeholder="Write &quot;None&quot; if none"><div class="errmsg">Required — write "None" if none</div></div>
+    <div class="f"><div class="q req">Are you allergic to latex?</div>
+      <div class="opts"><label><input type="radio" name="latex" value="No" required> No</label><label><input type="radio" name="latex" value="Yes"> Yes</label><label><input type="radio" name="latex" value="Not sure"> Not sure</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><label for="other_allergies">Other allergies (adhesive tape, iodine/Betadine, foods)</label><input type="text" id="other_allergies" name="other_allergies"></div>
+
+    <h3>Surgeries &amp; doctors</h3>
+    <div class="f"><label for="surgeries">Past surgeries and the year (include any prior surgery in the area of the procedure)</label><textarea id="surgeries" name="surgeries"></textarea></div>
+    <div class="f"><div class="q">Are you currently being treated by a doctor for any health issue?</div>
+      <div class="opts"><label><input type="radio" name="in_treatment" value="No"> No</label><label><input type="radio" name="in_treatment" value="Yes"> Yes</label></div></div>
+    <div class="sub-block" data-show-if="in_treatment=Yes"><div class="f"><label for="in_treatment_d">For what, and with whom?</label><input type="text" id="in_treatment_d" name="in_treatment_d"></div></div>
+    <div class="row">
+      <div class="f"><label for="pcp_name">Primary doctor's name</label><input type="text" id="pcp_name" name="pcp_name"></div>
+      <div class="f"><label for="pcp_phone">Doctor's phone</label><input type="tel" id="pcp_phone" name="pcp_phone"></div>
+    </div>
+    <label class="check" style="margin-bottom:18px"><input type="checkbox" name="ok_contact_pcp" value="Yes"> If needed, Rabbi Ekstein or his reviewing physician may contact my doctor about my medical clearance</label>
+
+    <h3>Lifestyle</h3>
+    <div class="row">
+      <div class="f"><div class="q">Do you smoke or vape?</div>
+        <div class="opts"><label><input type="radio" name="smoke" value="No"> No</label><label><input type="radio" name="smoke" value="Yes"> Yes</label></div></div>
+      <div class="f sub-block" data-show-if="smoke=Yes" style="margin-top:0"><label for="smoke_d">How much per day?</label><input type="text" id="smoke_d" name="smoke_d"></div>
+    </div>
+    <div class="row">
+      <div class="f"><div class="q">Do you drink alcohol?</div>
+        <div class="opts"><label><input type="radio" name="alcohol" value="No"> No</label><label><input type="radio" name="alcohol" value="Occasionally"> Occasionally</label><label><input type="radio" name="alcohol" value="Regularly"> Regularly</label></div></div>
+      <div class="f sub-block" data-show-if="alcohol=Regularly" style="margin-top:0"><label for="alcohol_d">How often / how much?</label><input type="text" id="alcohol_d" name="alcohol_d"></div>
+    </div>
+    <div class="f"><label for="activity">Your work and physical activity</label><input type="text" id="activity" name="activity" placeholder="e.g. Desk job, gym 3x a week — helps us plan recovery time"></div>
+  </section>
+
+  <!-- STEP 4: SCHEDULING -->
+  <section class="step" data-title="Scheduling">
+    <h2>Scheduling</h2>
+    <p class="lead">Nothing is booked yet — this just helps us plan your call.</p>
+    <div class="f"><div class="q req">When would you like to have the bris?</div>
+      <div class="opts"><label><input type="radio" name="timeframe" value="As soon as possible" required> As soon as possible</label><label><input type="radio" name="timeframe" value="Within 1–2 months"> Within 1–2 months</label><label><input type="radio" name="timeframe" value="Within 6 months"> Within 6 months</label><label><input type="radio" name="timeframe" value="Just exploring"> Just exploring</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><label for="dates">Any specific dates, or dates to avoid?</label><input type="text" id="dates" name="dates" placeholder="Brisen are done during the day — e.g. weekdays only, not before Nov 15"></div>
+    <div class="f"><div class="q">Where would you like the procedure done?</div>
+      <div class="hint">Usually the procedure is done in a private room at my office, with only me and my assistant present. The brachos are said right after, and family or guests can join for them in the next room.</div>
+      <div class="opts"><label><input type="radio" name="where" value="Private room at Rabbi Ekstein's office (Monroe, NY)"> Private room at my office (Monroe, NY)</label><label><input type="radio" name="where" value="At my home"> At my home</label><label><input type="radio" name="where" value="Not sure"> Not sure yet</label></div></div>
+    <div class="f"><div class="q">How would you like to mark the occasion?</div>
+      <div class="hint">Check all that apply. You can change your mind later.</div>
+      <div class="opts">
+        <label><input type="checkbox" name="celebration" value="Keep it completely private" data-exclusive> Keep it completely private</label>
+        <label><input type="checkbox" name="celebration" value="Family or guests present for the brachos"> Family or guests present for the brachos (right after the procedure, in the next room)</label>
+        <label><input type="checkbox" name="celebration" value="Seudah with family and friends"> Seudah with family and friends (at a shul, hall or home)</label>
+        <label><input type="checkbox" name="celebration" value="Invite only a few guests (e.g. my rabbi)"> Invite only a few guests (e.g. my rabbi)</label>
+        <label><input type="checkbox" name="celebration" value="Not sure yet"> Not sure yet</label>
+      </div></div>
+    <div class="sub-block" data-show-if="celebration=Invite only a few guests (e.g. my rabbi)|Family or guests present for the brachos|Seudah with family and friends"><div class="f"><label for="guests">Anyone special you'd like there, or a shul or hall for the seudah? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input type="text" id="guests" name="guests" placeholder="e.g. My rabbi, Rabbi Cohen; my parents"></div></div>
+    <div class="f"><div class="q req">Can someone drive or accompany you home afterwards?</div>
+      <div class="hint">You'll have local anesthesia and should not drive yourself home.</div>
+      <div class="opts"><label><input type="radio" name="escort" value="Yes" required> Yes</label><label><input type="radio" name="escort" value="Not yet — will arrange"> Not yet — I'll arrange it</label><label><input type="radio" name="escort" value="No — need help"> No — I'll need help with this</label></div><div class="errmsg">Please choose one</div></div>
+    <div class="f"><div class="q">Fee</div>
+      <div class="hint" style="font-size:.92rem;color:var(--ink)">The usual fee is $1,800–$2,000. If cost is a real obstacle, we can talk privately about a sponsor.</div>
+      <label class="check"><input type="checkbox" name="cost_concern" value="Yes"> I'd like to talk privately about cost</label></div>
+    <div class="f"><label for="questions">Questions you'd like answered on our call</label><textarea id="questions" name="questions"></textarea></div>
+  </section>
+
+  <!-- STEP 5: REVIEW & SIGN -->
+  <section class="step" data-title="Review &amp; submit">
+    <h2>Review &amp; submit</h2>
+    <p class="lead">Please check your answers. Tap "Edit" to change any section.</p>
+    <div class="review" id="review"></div>
+    <h3>Confirmation</h3>
+    <label class="check f"><input type="checkbox" name="attest_accurate" value="Yes" required> The information I have given is accurate and complete to the best of my knowledge.</label>
+    <div class="errmsg" style="margin:-12px 0 12px" id="attestErr1">Please confirm</div>
+    <label class="check f"><input type="checkbox" name="attest_not_consent" value="Yes" required> I understand this form is not a consent to the procedure. A separate consent will be explained and signed before any bris takes place.</label>
+    <div class="errmsg" style="margin:-12px 0 12px" id="attestErr2">Please confirm</div>
+    <div class="row">
+      <div class="f"><label class="req" for="signature">Type your full name as your signature</label><input type="text" id="signature" name="signature" required><div class="errmsg">Required</div></div>
+      <div class="f"><label for="signed_date">Date</label><input type="text" id="signed_date" name="signed_date" readonly></div>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section class="step" data-title="Done" id="done">
+    <h1>Thank you</h1>
+    <p class="lead" id="doneMsg">Your intake has been received. Rabbi Ekstein will call you personally, usually within one to two days.</p>
+    <p>In the meantime, if you have any question at all, call <a href="tel:+18454678595">845-467-8595</a>.</p>
+    <p class="no-print"><button type="button" class="ghost" onclick="window.print()">Print or save a copy</button></p>
+  </section>
+
+  <div class="nav" id="nav">
+    <button type="button" class="ghost" id="back">Back</button>
+    <button type="button" class="primary" id="next">Start</button>
+  </div>
+</form>
+</main>
+<footer>Rabbi Shlome Ekstein, Certified Mohel · <a href="tel:+18454678595">845-467-8595</a> · <a href="https://bris-milah.com/">bris-milah.com</a></footer>
+
+<script>
+/* ------------------------------------------------------------------
+   CONFIG — where submissions go.
+   Leave empty until the secure (HIPAA) backend exists. While empty,
+   the form runs in PREVIEW mode: nothing is sent anywhere.
+------------------------------------------------------------------- */
+const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec";
+
+(function(){
+  const form = document.getElementById('intake');
+  const steps = [...form.querySelectorAll('.step')];
+  const LAST_INPUT_STEP = steps.length - 2;   // review step
+  const back = document.getElementById('back'), next = document.getElementById('next');
+  const progress = document.getElementById('progress'), stepnote = document.getElementById('stepnote');
+  let cur = 0;
+
+  // progress bar (steps 1..5 = the four parts + scheduling)
+  for(let i=1;i<=LAST_INPUT_STEP;i++) progress.appendChild(document.createElement('span'));
+
+  // ---------- conditional display ----------
+  function values(name){
+    return [...form.querySelectorAll(`[name="${name}"]`)]
+      .filter(el => (el.type==='radio'||el.type==='checkbox') ? el.checked : true)
+      .map(el => el.value);
+  }
+  function isShown(el){
+    while(el && el!==form){ if(el.hidden) return false; el = el.parentElement; }
+    return true;
+  }
+  function applyConditions(){
+    form.querySelectorAll('[data-show-if]').forEach(el=>{
+      const [name, opts] = el.dataset.showIf.split('=');
+      const want = opts.split('|');
+      const on = values(name).some(v => want.includes(v));
+      el.hidden = !on;
+      if(el.classList.contains('warn')) el.classList.toggle('show', on);
+    });
+  }
+  // "None of these" is exclusive
+  form.addEventListener('change', e=>{
+    const t = e.target;
+    if(t.type==='checkbox' && (t.name==='conditions'||t.name==='celebration')){
+      const boxes = form.querySelectorAll(`[name="${t.name}"]`);
+      if(t.hasAttribute('data-exclusive') && t.checked) boxes.forEach(b=>{ if(b!==t) b.checked=false; });
+      else if(t.checked) boxes.forEach(b=>{ if(b.hasAttribute('data-exclusive')) b.checked=false; });
+    }
+    if(t.name==='attest_accurate') document.getElementById('attestErr1').style.display = t.checked ? 'none' : '';
+    if(t.name==='attest_not_consent') document.getElementById('attestErr2').style.display = t.checked ? 'none' : '';
+    if(t.name==='dob') checkAge();
+    applyConditions();
+    const f = t.closest('.f'); if(f) f.classList.remove('invalid');
+  });
+  form.addEventListener('input', e=>{ const f=e.target.closest('.f'); if(f) f.classList.remove('invalid'); });
+
+  function age(){
+    const v = form.dob.value; if(!v) return null;
+    const d = new Date(v+'T00:00'), n = new Date();
+    let a = n.getFullYear()-d.getFullYear();
+    if(n < new Date(n.getFullYear(), d.getMonth(), d.getDate())) a--;
+    return a;
+  }
+  function checkAge(){
+    const a = age();
+    document.getElementById('ageWarn').classList.toggle('show', a!==null && a<18);
+    return a===null || a>=18;
+  }
+
+  // ---------- validation ----------
+  function validate(step){
+    let ok = true, first = null;
+    const seenGroups = new Set();
+    step.querySelectorAll('[required]').forEach(el=>{
+      if(!isShown(el)) return;
+      const f = el.closest('.f') || el.parentElement;
+      let bad;
+      if(el.type==='radio'){
+        if(seenGroups.has(el.name)) return; seenGroups.add(el.name);
+        bad = !values(el.name).length;
+      } else if(el.type==='checkbox'){
+        bad = !el.checked;
+        const err = el.name==='attest_accurate' ? 'attestErr1' : el.name==='attest_not_consent' ? 'attestErr2' : null;
+        if(err) document.getElementById(err).style.display = bad ? 'block':'none';
+      } else bad = !el.value.trim();
+      if(el.type==='email' && el.value && !/^\S+@\S+\.\S+$/.test(el.value)) bad = true;
+      if(bad){ ok=false; f.classList.add('invalid'); first = first || f; }
+    });
+    // required checkbox group
+    const g = step.querySelector('[data-group="conditions"]');
+    if(g && !values('conditions').length){ ok=false; g.closest('.f').classList.add('invalid'); first = first || g; }
+    // optional email format
+    const em = step.querySelector('#email');
+    if(em && em.value && !/^\S+@\S+\.\S+$/.test(em.value)){ ok=false; em.closest('.f').classList.add('invalid'); first = first||em; }
+    if(step.contains(form.dob) && !checkAge()){ ok=false; first = first || form.dob; }
+    if(step.querySelector('[name=eligibility]') && values('eligibility').includes('Neither')){ ok=false; first = first || document.getElementById('eligWarn'); }
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+    return ok;
+  }
+
+  // ---------- review ----------
+  const labelFor = el => {
+    const f = el.closest('.f');
+    const l = f && (f.querySelector(':scope > label, :scope > .q'));
+    let t = (l ? l.textContent : el.name).trim();
+    if(el.type==='checkbox' && el.closest('label.check')) t = el.closest('label').textContent.trim();
+    return t;
+  };
+  function collect(){
+    const out = [];   // [{section, stepIndex, items:[[label,value]]}]
+    steps.slice(1, LAST_INPUT_STEP).forEach((s,i)=>{
+      const items = [], done = new Set();
+      s.querySelectorAll('input,select,textarea').forEach(el=>{
+        if(!isShown(el) || done.has(el.name)) return;
+        done.add(el.name);
+        let v;
+        if(el.type==='radio'||el.type==='checkbox'){
+          v = values(el.name).join(', ');
+          if(el.type==='checkbox' && el.closest('label.check')) v = el.checked ? 'Yes' : '';
+        } else v = el.value.trim();
+        if(v) items.push([labelFor(el), v, el.name]);
+      });
+      out.push({section: s.dataset.title, step: i+1, items});
+    });
+    return out;
+  }
+  function flags(){
+    const f = [];
+    if(values('anticoag').includes('Currently')) f.push('Currently on a blood thinner — physician letter needed');
+    if(values('anticoag').includes('In the past')) f.push('Past blood-thinner use');
+    if(/Yes/.test(values('bleeding_disorder')[0]||'')) f.push('Bleeding/clotting disorder reported ('+values('bleeding_disorder')[0]+')');
+    if(values('easy_bleed').includes('Yes')) f.push('Reports easy bruising / heavy bleeding');
+    if(values('anesthetic_rx').includes('Yes')) f.push('Prior reaction to local anesthetic');
+    if(values('latex').includes('Yes')) f.push('Latex allergy');
+    if(values('otc').length) f.push('Recent bleeding-risk OTC/supplements: '+values('otc').join(', '));
+    const c = values('conditions').filter(v=>v!=='None of these');
+    if(c.length) f.push('Conditions: '+c.join(', '));
+    if(values('escort').includes('No — need help')) f.push('Needs help arranging an escort home');
+    const cel = values('celebration');
+    if(cel.length && !cel.includes('Keep it completely private') && !(cel.length===1 && cel[0]==='Not sure yet')) f.push('Celebrating with guests — send the Brit Honor link once the date is booked');
+    if(values('cost_concern').length) f.push('Asked to talk privately about cost');
+    return f;
+  }
+  function renderReview(){
+    const r = document.getElementById('review'); r.innerHTML='';
+    collect().forEach(sec=>{
+      const h = document.createElement('h4');
+      h.innerHTML = `<span>${sec.section}</span><a class="no-print" data-go="${sec.step}">Edit</a>`;
+      r.appendChild(h);
+      const dl = document.createElement('dl');
+      sec.items.forEach(([k,v])=>{
+        const dt=document.createElement('dt'); dt.textContent=k.replace(/\s*\*$/,'');
+        const dd=document.createElement('dd'); dd.textContent=v;
+        dl.append(dt,dd);
+      });
+      r.appendChild(dl);
+    });
+    r.querySelectorAll('[data-go]').forEach(a=>a.onclick=()=>go(+a.dataset.go));
+  }
+
+  // ---------- navigation ----------
+  function go(i){
+    steps[cur].classList.remove('active');
+    cur = i;
+    steps[cur].classList.add('active');
+    if(cur===LAST_INPUT_STEP){
+      renderReview();
+      form.signed_date.value = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    }
+    const isDone = cur===steps.length-1;
+    back.style.visibility = (cur===0||isDone) ? 'hidden':'visible';
+    next.textContent = cur===0 ? 'Start' : cur===LAST_INPUT_STEP ? 'Submit' : 'Continue';
+    document.getElementById('nav').style.display = isDone ? 'none':'flex';
+    [...progress.children].forEach((s,j)=>s.classList.toggle('done', j < cur));
+    progress.style.display = stepnote.style.display = (cur===0||isDone) ? 'none':'flex';
+    stepnote.style.display = (cur===0||isDone) ? 'none':'block';
+    stepnote.textContent = `Step ${cur} of ${LAST_INPUT_STEP} · ${steps[cur].dataset.title}`;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  back.onclick = ()=> go(cur-1);
+  next.onclick = async ()=>{
+    if(cur>0 && !validate(steps[cur])) return;
+    if(cur<LAST_INPUT_STEP){ go(cur+1); return; }
+    // submit
+    const payload = {
+      form_version: 'adult_intake_v1',
+      submitted_at: new Date().toISOString(),
+      age: age(),
+      answers: Object.fromEntries([...new Set([...form.elements].map(e=>e.name).filter(Boolean))]
+                 .map(n=>[n, values(n).filter(Boolean).join(', ')]).filter(([,v])=>v)),
+      flags: flags()
+    };
+    next.disabled = true; next.textContent = 'Sending…';
+    try{
+      if(SUBMIT_ENDPOINT){
+        const res = await fetch(SUBMIT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        if(!res.ok) throw new Error(res.status);
+        const out = await res.json().catch(()=>({}));
+        if(!out.ok) throw new Error('not saved');
+      } else {
+        console.info('[preview mode] intake payload', payload);
+        document.getElementById('doneMsg').textContent =
+          'Preview mode: this form is not yet connected, so nothing was sent. When it goes live, Rabbi Ekstein will call you personally after you submit.';
+      }
+      go(steps.length-1);
+    }catch(err){
+      next.disabled=false; next.textContent='Submit';
+      alert('Something went wrong sending your form. Please try again, or call 845-467-8595.');
+    }
+  };
+
+  applyConditions();
+  go(0);
+})();
+</script>
+</body>
+</html>
