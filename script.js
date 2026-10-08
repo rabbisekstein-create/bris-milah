@@ -118,10 +118,10 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
     });
   }
 
-  /* ---------- "About the baby" form -> email or WhatsApp ----------
-     Nothing leaves the page until the parent presses a button. The answers are
-     assembled into a plain message and handed to their own mail app or
-     WhatsApp; there is no server and nothing is stored. */
+  /* ---------- "About the baby" form -> direct, email or WhatsApp ----------
+     Nothing leaves the page until the parent presses a button. "Send directly"
+     saves to the private Google Sheet; email and WhatsApp hand a plain message
+     to the parent's own app. */
   var babyForm = document.getElementById("babyForm");
   if (babyForm) {
     var babyFields = [
@@ -219,10 +219,61 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
       }
     };
 
+    // "Send directly": saves to Rabbi Ekstein's private Google Sheet (Babies tab)
+    var babyDirect = function () {
+      var answers = {};
+      var answered = 0;
+      babyFields.forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        var v = el ? el.value.trim() : "";
+        if (v && pidyonBlock && pidyonBlock.contains(el) && !pidyonShown()) v = "";
+        if (v) { answered++; answers[pair[1]] = v; }
+      });
+      if (!answered) {
+        if (babyNote) { babyNote.textContent = "Please fill in at least one answer first."; babyNote.className = "form-note err"; }
+        return;
+      }
+      var btn = document.getElementById("babyDirect");
+      if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+      fetch("https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec", {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ form_version: "baby_intake_v1", submitted_at: new Date().toISOString(), answers: answers })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error("fail");
+          if (babyNote) { babyNote.textContent = "Thank you, it was sent. I will call you soon."; babyNote.className = "form-note ok"; }
+          if (btn) btn.textContent = "Sent";
+        })
+        .catch(function () {
+          if (babyNote) { babyNote.textContent = "Sorry, it could not be sent. Please use email or WhatsApp, or call 845-467-8595."; babyNote.className = "form-note err"; }
+          if (btn) { btn.disabled = false; btn.textContent = "Send directly to Rabbi Ekstein"; }
+        });
+    };
+    var babyDirectBtn = document.getElementById("babyDirect");
+    if (babyDirectBtn) babyDirectBtn.addEventListener("click", babyDirect);
+
     var babyEmailBtn = document.getElementById("babyEmail");
     var babyWaBtn = document.getElementById("babyWhatsapp");
-    if (babyEmailBtn) babyEmailBtn.addEventListener("click", function () { babySend("email"); });
-    if (babyWaBtn) babyWaBtn.addEventListener("click", function () { babySend("whatsapp"); });
+    // Phone alert when a parent sends from their own email/WhatsApp: name and phone only
+    var babyAlert = function (how) {
+      var phoneEl = document.getElementById("b_phone");
+      var phone = phoneEl ? phoneEl.value.trim() : "";
+      if (!phone || !babyMessage()) return;
+      var nameEl = document.getElementById("b_parent");
+      var params = new URLSearchParams({
+        name: nameEl ? nameEl.value.trim() : "",
+        phone: phone,
+        regarding: "Baby form sent by " + how + ", check your " + how
+      });
+      try {
+        if (navigator.sendBeacon) navigator.sendBeacon("https://lead-alert-4146.twil.io/new-lead", params);
+        else fetch("https://lead-alert-4146.twil.io/new-lead", { method: "POST", body: params, mode: "no-cors", keepalive: true });
+      } catch (e) {}
+    };
+    if (babyEmailBtn) babyEmailBtn.addEventListener("click", function () { babyAlert("email"); babySend("email"); });
+    if (babyWaBtn) babyWaBtn.addEventListener("click", function () { babyAlert("WhatsApp"); babySend("whatsapp"); });
   }
 
   /* ---------- Contact form -> Web3Forms ---------- */
