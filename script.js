@@ -6,6 +6,17 @@
 // The address that receives the contact form.
 var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
 
+// Phone-call alert to Rabbi Ekstein's cell for every website request (Twilio).
+// Sends name, phone and what it is about only. Never blocks the form.
+function leadAlert(name, phone, regarding) {
+  if (!phone) return;
+  var params = new URLSearchParams({ name: name || "", phone: phone, regarding: regarding || "Website request" });
+  try {
+    if (navigator.sendBeacon) navigator.sendBeacon("https://lead-alert-4146.twil.io/new-lead", params);
+    else fetch("https://lead-alert-4146.twil.io/new-lead", { method: "POST", body: params, mode: "no-cors", keepalive: true });
+  } catch (e) {}
+}
+
 (function () {
   "use strict";
 
@@ -331,6 +342,8 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
     var bot = document.getElementById("botcheck");
     if (bot && bot.checked) return; // spam trap
 
+    leadAlert(name, phone, "Contact form, " + (value("type") || "general"));
+
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
     setNote("Sending your message...", "");
@@ -412,6 +425,8 @@ var CONTACT_EMAIL = "rabbisekstein@bris-milah.com";
         else if (el) el.classList.remove("invalid");
       });
       if (missing) { setNote(d.missing, "err"); missing.focus(); return; }
+
+      leadAlert(val("name"), val("phone"), d.subject);
 
       if (btn) { btn.disabled = true; btn.textContent = d.sending; }
       fetch("https://api.web3forms.com/submit", {
