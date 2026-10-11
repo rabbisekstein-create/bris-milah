@@ -6,7 +6,7 @@ Copy these files into the website repository, keeping the same folders, then com
 Removed every statement that a doctor or medical professional reviews the medical form.
 Pages: adult-bris, is-it-too-late, first-mitzvah, checklists, intake (incl. consent text), ru, ru/ne-pozdno, ru/pervaya-mitsva.
 New wording: Rabbi Ekstein goes through the medical history himself, and both forms are read only by him.
-PLEASE READ the intake consent section yourself before publishing — it is a consent document.
+Consent updated Oct 11: assistant or second mohel may be present; explanation in English with translation on request. Have a lawyer review the final consent once.
 
 ## New pages
 - /adult-bris/cost/ — Adult brit milah cost ($1,800–$2,000, what it covers, sponsor)
