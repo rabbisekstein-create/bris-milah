@@ -320,6 +320,8 @@ p{ margin:0 0 1.15em; }
   border-radius:var(--radius); box-shadow:var(--shadow-md);
 }
 .photo-frame-caption{ margin:14px auto 48px; }
+/* Keep the gold frame around the photo only, not through the caption */
+.photo-frame-caption::before{ bottom:calc(14px + 14px + 1.08rem * 1.7); }
 .photo-frame figcaption{
   position:relative; margin-top:14px; text-align:center;
   font-family:var(--serif); font-style:italic; font-size:1.08rem; color:var(--ink-soft);
