@@ -312,7 +312,7 @@ p{ margin:0 0 1.15em; }
 /* Rectangular photo beside text (adult page consultation photo) */
 .photo-frame{ position:relative; width:100%; max-width:480px; margin:0 auto; }
 .photo-frame::before{
-  content:""; position:absolute; inset:-14px 14px 14px -14px;
+  content:""; position:absolute; inset:-12px;
   border:1px solid var(--gold); border-radius:var(--radius);
 }
 .photo-frame img{
@@ -321,7 +321,8 @@ p{ margin:0 0 1.15em; }
 }
 .photo-frame-caption{ margin:14px auto 48px; }
 /* Keep the gold frame around the photo only, not through the caption */
-.photo-frame-caption::before{ bottom:calc(14px + 14px + 1.08rem * 1.7); }
+.photo-frame-caption::before{ bottom:calc(28px + 1.08rem * 1.7 - 12px); }
+.photo-frame-caption figcaption{ margin-top:28px; }
 .photo-frame figcaption{
   position:relative; margin-top:14px; text-align:center;
   font-family:var(--serif); font-style:italic; font-size:1.08rem; color:var(--ink-soft);
