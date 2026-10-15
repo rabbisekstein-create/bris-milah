@@ -269,7 +269,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px
       <label class="check"><input type="checkbox" name="adult" value="Yes"> I am 18 or older</label>
       <div class="errmsg">This form is for adults. If you're under 18, please ask a parent to call 845-467-8595.</div>
     </div>
-    <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="hp_x7q" tabindex="-1" autocomplete="one-time-code"></label></div>
   </section>
 
   <!-- STEP 4: REVIEW -->
@@ -409,6 +409,9 @@ const CIRC_SAYS = { 'No': 'not circumcised', 'Yes': 'already circumcised' };
       const v = val(name);
       if(v && isShown(el)) answers[name] = v;
     });
+    // Spam trap: a name autofill never recognises, sent as "website" (what the Sheet script checks)
+    if(answers.hp_x7q){ answers.website = answers.hp_x7q; }
+    delete answers.hp_x7q;
     const payload = { form_version: 'roots_intake_v1', answers };
     const reply = answers.contact_by === 'Text message' ? 'text you' : 'call you';
     document.getElementById('doneMsg').textContent =
