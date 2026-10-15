@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jewish Roots: A Private First Step | Rabbi Ekstein</title>
+<meta name="description" content="A few short, private questions about your family and your brit, so Rabbi Ekstein can call you back. No medical questions, and no commitment.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<!-- A form, like /adult-bris/intake/: search traffic comes in through
+     /adult-bris/first-mitzvah/ and the other adult pages, not this one -->
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://bris-milah.com/adult-bris/roots-intake/">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#1f5c99">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1f5c99; --navy-2:#174a7c; --soft:#e9f0f7;
+  --ink:#172026; --muted:#5f6a73; --line:#dce1e5; --bg:#f7f8f6; --card:#fff;
+  --err:#b3261e;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Rubik,system-ui,sans-serif}
+a{color:var(--navy)}
+header{background:var(--navy);color:#fff;padding:22px 16px 26px;text-align:center}
+header .name{font-size:1.5rem;font-weight:600;letter-spacing:.2px}
+header .sub{opacity:.8;font-size:.88rem;margin-top:2px}
+main{max-width:720px;margin:-14px auto 40px;padding:0 16px}
+.card{background:var(--card);border-radius:14px;box-shadow:0 2px 14px rgba(22,35,61,.08);padding:30px 28px}
+@media(max-width:560px){.card{padding:22px 16px}}
+h1,h2{color:var(--navy);font-weight:600;line-height:1.2}
+h1{font-size:1.9rem;margin:0 0 12px}
+h2{font-size:1.5rem;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 20px}
+p{margin:0 0 14px}
+
+/* opening screen */
+ol.how{list-style:none;margin:22px 0;padding:0;counter-reset:s}
+ol.how li{counter-increment:s;position:relative;padding:0 0 16px 46px}
+ol.how li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--soft);color:var(--navy);display:grid;place-items:center;font-weight:600}
+ol.how strong{display:block}
+ol.how span{color:var(--muted)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.facts div{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.facts b{display:block;font-size:1.5rem;color:var(--navy);line-height:1.2}
+.facts span{font-size:.92rem;color:var(--muted)}
+.facts .wide{font-size:1rem;font-weight:500;color:var(--ink)}
+@media(max-width:560px){.facts{grid-template-columns:1fr}}
+.ask{background:var(--soft);border-radius:12px;padding:16px 18px;margin:0 0 6px}
+.ask p{margin:0 0 10px}
+.ask .links{display:flex;flex-wrap:wrap;gap:10px}
+.ask a{display:inline-block;background:#fff;border:1px solid var(--navy);border-radius:999px;padding:8px 16px;text-decoration:none;font-weight:500}
+
+/* progress */
+.progress{display:flex;gap:6px;margin:0 0 6px}
+.progress span{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.progress span.done{background:var(--navy)}
+.stepnote{font-size:.8rem;color:var(--muted);margin-bottom:18px}
+
+/* fields */
+.f{margin:0 0 22px;border:0;padding:0}
+.f>label,.f>legend{display:block;font-weight:500;margin-bottom:8px;padding:0}
+.hint{font-size:.88rem;color:var(--muted);margin:-4px 0 8px}
+input[type=text],input[type=tel],select,textarea{
+  width:100%;padding:11px 12px;border:1px solid #cdd3dd;border-radius:9px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--navy);outline-offset:1px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{display:flex;align-items:center;gap:8px;border:1px solid #cdd3dd;border-radius:999px;padding:8px 14px;cursor:pointer;background:#fff}
+.opts label:has(input:checked){border-color:var(--navy);background:#eef1f7}
+.opts input{accent-color:var(--navy);margin:0}
+.opts input:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check input{margin-top:4px;accent-color:var(--navy);width:18px;height:18px;flex:none}
+.sub-block{border-left:3px solid var(--soft);padding-left:14px;margin:-8px 0 22px}
+.note{background:var(--soft);border-radius:10px;padding:13px 16px;font-size:.93rem;margin:0 0 22px}
+.invalid input,.invalid select,.invalid textarea,.invalid .opts label{border-color:var(--err)}
+.errmsg{color:var(--err);font-size:.85rem;margin-top:6px;display:none}
+.invalid .errmsg{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* nav */
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
+button{font:inherit;font-weight:600;border-radius:10px;padding:12px 22px;cursor:pointer;border:1px solid var(--navy)}
+.primary{background:var(--navy);color:#fff}
+.primary:hover{background:var(--navy-2)}
+.primary:disabled{opacity:.6;cursor:default}
+.ghost{background:#fff;color:var(--navy)}
+.step{display:none}
+.step.active{display:block}
+
+/* review */
+.review dl{margin:0 0 6px;display:grid;grid-template-columns:minmax(130px,40%) 1fr;gap:6px 14px;font-size:.94rem}
+.review dt{color:var(--muted)}
+.review dd{margin:0;white-space:pre-wrap;word-break:break-word}
+.review h3{margin:20px 0 8px;color:var(--navy);font-size:1rem;display:flex;justify-content:space-between}
+.review h3 button{border:0;background:none;padding:0;color:var(--navy);font-weight:500;font-size:.85rem;text-decoration:underline}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header>
+  <div class="name">Rabbi Shlome Ekstein</div>
+  <div class="sub">Certified Mohel · Monroe, New York</div>
+</header>
+
+<main>
+<form class="card" id="roots" novalidate>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="stepnote" id="stepnote" aria-live="polite"></div>
+
+  <!-- STEP 0: OPENING (no personal details here) -->
+  <section class="step active" data-title="Welcome">
+    <h1>Exploring your Jewish roots</h1>
+    <p>Perhaps you've learned that your mother, father or grandmother was Jewish, or you're finding your way back after years away. You're welcome here, whatever your story.</p>
+    <p>Before a brit milah or hatafas dam bris, there's a question that comes first: your Jewish status. That depends on your family, so this short form asks about your parents. Here's how it works:</p>
+    <ol class="how">
+      <li><strong>A few questions</strong><span>About your parents and whether you've spoken with a rabbi. About three minutes. No documents and no medical questions.</span></li>
+      <li><strong>A private conversation</strong><span>Rabbi Ekstein calls or texts you back and answers your questions.</span></li>
+      <li><strong>A rabbi's guidance</strong><span>Questions of Jewish status are decided by a rabbi or beis din, not by this form. Where that's needed, we help arrange it, and work with your own rabbi if you have one.</span></li>
+      <li><strong>Only then, the brit</strong><span>If and when you're ready, the usual adult steps follow, and not before.</span></li>
+    </ol>
+    <p class="note"><strong>Your privacy.</strong> Your answers are read only by Rabbi Ekstein and used only to call you back and guide your next step. Nothing is tracked on this form. <a href="/privacy/" target="_blank" rel="noopener">How your information is handled</a></p>
+    <p class="lead">Would you like to read first? <a href="/adult-bris/jewish-mother/">A Jewish mother</a> · <a href="/adult-bris/jewish-father/">A Jewish father</a> · <a href="/adult-bris/faq/">Questions and answers</a></p>
+    <div class="facts">
+      <div><b>300+</b><span>brisen in the past 14 months</span></div>
+      <div><span class="wide">Trained and certified by Rabbi Michael Rovinsky</span></div>
+    </div>
+    <div class="ask">
+      <p><strong>Would you rather ask something first?</strong> That's completely fine. No question is too small, and asking commits you to nothing.</p>
+      <div class="links">
+        <a href="tel:+18454678595">Call 845-467-8595</a>
+        <a href="sms:+18454678595">Text 845-467-8595</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 1: PARENTS -->
+  <section class="step" data-title="Your family">
+    <h2>Your family</h2>
+    <p class="lead">We ask about each parent separately, because each one can matter in a different way. Just answer what you know. "Not sure" is a perfectly good answer.</p>
+
+    <fieldset class="f" data-req>
+      <legend>Is your mother Jewish?</legend>
+      <div class="opts">
+        <label><input type="radio" name="mother" value="Jewish from birth"> Yes, from birth</label>
+        <label><input type="radio" name="mother" value="Converted"> Yes, she converted</label>
+        <label><input type="radio" name="mother" value="No"> No</label>
+        <label><input type="radio" name="mother" value="Not sure"> I'm not sure</label>
+        <label><input type="radio" name="mother" value="Discuss by phone"> I'd rather talk about it</label>
+      </div>
+      <div class="errmsg">Please choose one, any answer is fine</div>
+    </fieldset>
+    <div class="sub-block" data-show-if="mother=Not sure">
+      <fieldset class="f">
+        <legend>What about your mother's mother (your grandmother)?</legend>
+        <div class="hint">Optional. Sometimes this is the part of the story people know.</div>
+        <div class="opts">
+          <label><input type="radio" name="maternal_grandmother" value="Jewish"> She was Jewish</label>
+          <label><input type="radio" name="maternal_grandmother" value="Not Jewish"> She wasn't</label>
+          <label><input type="radio" name="maternal_grandmother" value="Not sure"> I don't know</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <fieldset class="f" data-req>
+      <legend>Is your father Jewish?</legend>
+      <div class="opts">
+        <label><input type="radio" name="father" value="Jewish from birth"> Yes, from birth</label>
+        <label><input type="radio" name="father" value="Converted"> Yes, he converted</label>
+        <label><input type="radio" name="father" value="No"> No</label>
+        <label><input type="radio" name="father" value="Not sure"> I'm not sure</label>
+        <label><input type="radio" name="father" value="Discuss by phone"> I'd rather talk about it</label>
+      </div>
+      <div class="errmsg">Please choose one, any answer is fine</div>
+    </fieldset>
+
+    <div class="note">Whatever you've answered, a rabbi looks at each situation personally. Nothing you choose here decides anything about you.</div>
+  </section>
+
+  <!-- STEP 2: CIRCUMCISION AND RABBI -->
+  <section class="step" data-title="Your brit">
+    <h2>Your brit</h2>
+    <p class="lead">This helps us explain the right things when we speak.</p>
+
+    <fieldset class="f" data-req>
+      <legend>Are you circumcised?</legend>
+      <div class="opts">
+        <label><input type="radio" name="circumcised" value="No"> No</label>
+        <label><input type="radio" name="circumcised" value="Yes"> Yes</label>
+        <label><input type="radio" name="circumcised" value="Not sure"> I'm not sure</label>
+        <label><input type="radio" name="circumcised" value="Discuss by phone"> I'd rather talk about it</label>
+      </div>
+      <div class="errmsg">Please choose one</div>
+    </fieldset>
+    <div class="note" data-show-if="circumcised=No">That's very common. You can read about <a href="/adult-bris/" target="_blank" rel="noopener">adult brit milah</a> any time, and we'll go through it together on the call.</div>
+    <div class="note" data-show-if="circumcised=Yes">A rabbi will advise whether <a href="/hatafas-dam-bris/" target="_blank" rel="noopener">hatafas dam bris</a> applies to you. You don't need to work it out yourself.</div>
+    <div class="note" data-show-if="circumcised=Not sure">Many men aren't sure. <a href="/adult-bris/not-sure/" target="_blank" rel="noopener">Here's how it's usually cleared up</a>, privately.</div>
+
+    <fieldset class="f" data-req>
+      <legend>Have you spoken with a rabbi about this?</legend>
+      <div class="opts">
+        <label><input type="radio" name="rabbi_consulted" value="Yes"> Yes</label>
+        <label><input type="radio" name="rabbi_consulted" value="Not yet"> Not yet</label>
+        <label><input type="radio" name="rabbi_consulted" value="Would like help finding one"> I don't have a rabbi, and I'd like help finding one</label>
+      </div>
+      <div class="errmsg">Please choose one</div>
+    </fieldset>
+    <div class="sub-block" data-show-if="rabbi_consulted=Yes">
+      <div class="f">
+        <label for="rabbi_name">His name and how to reach him</label>
+        <div class="hint">Optional, only if you're comfortable sharing it.</div>
+        <input type="text" id="rabbi_name" name="rabbi_name" maxlength="120" autocomplete="off">
+      </div>
+      <label class="check f"><input type="checkbox" name="ok_contact_rabbi" value="Yes"> Rabbi Ekstein may speak with this rabbi about my situation</label>
+    </div>
+  </section>
+
+  <!-- STEP 3: CONTACT -->
+  <section class="step" data-title="How to reach you">
+    <h2>How to reach you</h2>
+    <p class="lead">Just enough to get back to you. Your number is used only to call or text you about this, never for marketing, and we never email.</p>
+
+    <div class="f" data-req>
+      <label for="name">What should we call you?</label>
+      <div class="hint">A first name is fine.</div>
+      <input type="text" id="name" name="name" maxlength="60" autocomplete="given-name">
+      <div class="errmsg">Please tell us what to call you</div>
+    </div>
+    <div class="f" data-req data-phone>
+      <label for="phone">Callback number</label>
+      <input type="tel" id="phone" name="phone" maxlength="25" autocomplete="tel" inputmode="tel">
+      <div class="errmsg">Please enter a phone number we can reach you on</div>
+    </div>
+    <fieldset class="f" data-req>
+      <legend>How would you prefer we reach you?</legend>
+      <div class="opts">
+        <label><input type="radio" name="contact_by" value="Phone call"> Phone call</label>
+        <label><input type="radio" name="contact_by" value="Text message"> Text message</label>
+      </div>
+      <div class="errmsg">Please choose one</div>
+    </fieldset>
+    <fieldset class="f">
+      <legend>Is it OK to leave a voicemail?</legend>
+      <div class="opts">
+        <label><input type="radio" name="voicemail_ok" value="Yes"> Yes</label>
+        <label><input type="radio" name="voicemail_ok" value="No"> No, please don't leave a message</label>
+      </div>
+    </fieldset>
+    <div class="f">
+      <label for="best_time">Best time to reach you</label>
+      <select id="best_time" name="best_time">
+        <option value="">Any time</option>
+        <option>Morning</option>
+        <option>Afternoon</option>
+        <option>Evening</option>
+      </select>
+    </div>
+    <div class="f">
+      <label for="question">Anything you'd like to ask us?</label>
+      <div class="hint">Optional. You can also just ask on the call.</div>
+      <textarea id="question" name="question" maxlength="600"></textarea>
+    </div>
+    <div class="f" data-req>
+      <label class="check"><input type="checkbox" name="adult" value="Yes"> I am 18 or older</label>
+      <div class="errmsg">This form is for adults. If you're under 18, please ask a parent to call 845-467-8595.</div>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  </section>
+
+  <!-- STEP 4: REVIEW -->
+  <section class="step review" data-title="Check and send">
+    <h2>Check and send</h2>
+    <p class="lead">Please look this over. You can change anything.</p>
+    <div id="reviewBody"></div>
+    <div class="note" style="margin-top:18px">
+      <strong>Who sees this.</strong> Only Rabbi Ekstein. If a rabbi or beis din needs to review your family background, he'll talk with you before sharing it. Nothing is sold, used for advertising, or sent by email.
+    </div>
+  </section>
+
+  <!-- STEP 5: DONE -->
+  <section class="step" data-title="Sent">
+    <h2>Thank you</h2>
+    <p id="doneMsg"></p>
+    <p>Taking this step isn't always easy, and there's no rush from here. If something comes up in the meantime, you can call or text <a href="tel:+18454678595">845-467-8595</a>.</p>
+  </section>
+
+  <div class="nav" id="nav">
+    <button type="button" class="ghost" id="back">Back</button>
+    <button type="button" class="primary" id="next">Begin</button>
+  </div>
+</form>
+</main>
+
+<footer>Rabbi Shlome Ekstein, Certified Mohel · <a href="tel:+18454678595">845-467-8595</a></footer>
+
+<script>
+/* Where submissions go.
+   SUBMIT_ENDPOINT: the Apps Script web app (same as the adult intake). Its
+   doPost hands this form (form_version "roots_intake_v1") to handleSiteForm()
+   in the site-forms script, which writes the "Roots" tab and marks the case
+   for rabbinic review. Empty = preview mode: nothing is sent anywhere.
+   ALERT_ENDPOINT: the phone-call alert. It gets the name, number and what it
+   is about (adult, circumcised or not), never the family answers. */
+const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec";
+const ALERT_ENDPOINT = "https://lead-alert-4146.twil.io/new-lead";
+const CIRC_SAYS = { 'No': 'not circumcised', 'Yes': 'already circumcised' };
+
+(function(){
+  const form = document.getElementById('roots');
+  const steps = [...form.querySelectorAll('.step')];
+  const REVIEW = steps.length - 2, DONE = steps.length - 1;
+  const back = document.getElementById('back'), next = document.getElementById('next');
+  const progress = document.getElementById('progress'), stepnote = document.getElementById('stepnote');
+  let cur = 0;
+
+  for(let i=1;i<=REVIEW;i++) progress.appendChild(document.createElement('span'));
+
+  function values(name){
+    return [...form.querySelectorAll(`[name="${name}"]`)]
+      .filter(el => (el.type==='radio'||el.type==='checkbox') ? el.checked : true)
+      .map(el => el.value.trim()).filter(Boolean);
+  }
+  const val = (name) => values(name).join(', ');
+
+  function isShown(el){
+    while(el && el!==form){ if(el.hidden) return false; el = el.parentElement; }
+    return true;
+  }
+  function applyConditions(){
+    form.querySelectorAll('[data-show-if]').forEach(el=>{
+      const [name, opts] = el.dataset.showIf.split('=');
+      el.hidden = !values(name).some(v => opts.split('|').includes(v));
+    });
+  }
+  form.addEventListener('change', applyConditions);
+
+  function validate(step){
+    let ok = true, first = null;
+    step.querySelectorAll('[data-req]').forEach(f=>{
+      if(!isShown(f)) return;
+      const input = f.querySelector('input,select,textarea');
+      let good = values(input.name).length > 0;
+      if(good && f.hasAttribute('data-phone')) good = val('phone').replace(/\D/g,'').length >= 7;
+      f.classList.toggle('invalid', !good);
+      if(!good){ ok = false; first = first || input; }
+    });
+    if(first) first.focus();
+    return ok;
+  }
+
+  // Review: only what the person answered, with a way back to each part
+  const SECTIONS = [
+    [1, 'Your family', [['mother','Mother'],['maternal_grandmother',"Mother's mother"],['father','Father']]],
+    [2, 'Your brit', [['circumcised','Circumcised'],['rabbi_consulted','Spoken with a rabbi'],['rabbi_name','Rabbi'],['ok_contact_rabbi','OK to contact him']]],
+    [3, 'How to reach you', [['name','Name'],['phone','Callback number'],['contact_by','Contact by'],['voicemail_ok','Voicemail OK'],['best_time','Best time'],['question','Your question']]]
+  ];
+  function renderReview(){
+    const box = document.getElementById('reviewBody');
+    box.textContent = '';
+    SECTIONS.forEach(([n, title, fields])=>{
+      const h = document.createElement('h3'), edit = document.createElement('button');
+      h.textContent = title; edit.type = 'button'; edit.textContent = 'Change'; edit.onclick = ()=>go(n);
+      h.appendChild(edit);
+      const dl = document.createElement('dl');
+      fields.forEach(([name, label])=>{
+        const el = form.querySelector(`[name="${name}"]`);
+        const v = val(name);
+        if(!v || !isShown(el)) return;
+        const dt = document.createElement('dt'), dd = document.createElement('dd');
+        dt.textContent = label; dd.textContent = v;
+        dl.append(dt, dd);
+      });
+      box.append(h, dl);
+    });
+  }
+
+  function go(n){
+    steps[cur].classList.remove('active');
+    cur = n;
+    steps[cur].classList.add('active');
+    if(cur===REVIEW) renderReview();
+    const edge = cur===0 || cur===DONE;
+    back.style.visibility = edge ? 'hidden' : 'visible';
+    next.textContent = cur===0 ? 'Begin' : cur===REVIEW ? 'Send privately' : 'Continue';
+    document.getElementById('nav').style.display = cur===DONE ? 'none' : 'flex';
+    [...progress.children].forEach((s,j)=>s.classList.toggle('done', j < cur));
+    progress.style.display = edge ? 'none' : 'flex';
+    stepnote.style.display = edge ? 'none' : 'block';
+    stepnote.textContent = `Step ${cur} of ${REVIEW} · ${steps[cur].dataset.title}`;
+    window.scrollTo({top:0, behavior:'smooth'});
+    const h = steps[cur].querySelector('h1,h2');
+    if(h && cur>0){ h.tabIndex = -1; h.focus({preventScroll:true}); }
+  }
+
+  back.onclick = ()=> go(cur-1);
+  next.onclick = async ()=>{
+    if(cur>0 && cur<REVIEW && !validate(steps[cur])) return;
+    if(cur<REVIEW){ go(cur+1); return; }
+
+    // Only fields that are showing are sent; nothing is kept in the browser
+    const answers = {};
+    [...new Set([...form.elements].map(e=>e.name).filter(Boolean))].forEach(name=>{
+      const el = form.querySelector(`[name="${name}"]`);
+      const v = val(name);
+      if(v && isShown(el)) answers[name] = v;
+    });
+    const payload = { form_version: 'roots_intake_v1', answers };
+    const reply = answers.contact_by === 'Text message' ? 'text you' : 'call you';
+    document.getElementById('doneMsg').textContent =
+      `Rabbi Ekstein will personally ${reply} at ${answers.phone}, usually within one to two days (not on Shabbos or Yom Tov). There's nothing else to fill in for now. If you go ahead later, the medical questions come separately.`;
+
+    next.disabled = true; next.textContent = 'Sending…';
+    try{
+      if(SUBMIT_ENDPOINT){
+        let saved = false;
+        try{
+          const res = await fetch(SUBMIT_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+          const out = await res.json().catch(()=>({}));
+          saved = res.ok && out.ok === true;
+        }catch(e){}
+        // The call goes out either way, so nobody is missed if saving failed
+        if(!answers.website){
+          fetch(ALERT_ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,body:new URLSearchParams({
+            name: answers.name, phone: answers.phone,
+            regarding: saved ? 'Adult roots, ' + (CIRC_SAYS[answers.circumcised] || 'unsure if circumcised')
+                             : 'Adult roots, form not saved, call back'})}).catch(()=>{});
+        }
+        if(!saved) throw new Error('not saved');
+      } else {
+        document.getElementById('doneMsg').textContent =
+          'Preview mode: this form is not connected yet, so nothing was sent.';
+      }
+      form.reset();
+      go(DONE);
+    }catch(err){
+      next.disabled = false; next.textContent = 'Send privately';
+      alert('Sorry, something went wrong sending this. Please try again, or call or text 845-467-8595.');
+    }
+  };
+
+  applyConditions();
+  go(0);
+})();
+</script>
+</body>
+</html>

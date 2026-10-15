@@ -839,3 +839,8 @@ p{ margin:0 0 1.15em; }
 }
 .ranked li{ margin-bottom:7px; padding-left:6px; }
 .ranked li::marker{ color:var(--gold); font-weight:600; }
+
+/* Adult section: notice at the top of a section, FAQ/Contact links in the closing band */
+.prose > .callout:first-child, .wrap > .callout:first-child{ margin-top:0; margin-bottom:28px; }
+.cta-band p a{ color:#fff; }
+.cta-band .cta-links{ margin-top:10px; }

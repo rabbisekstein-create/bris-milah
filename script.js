@@ -17,6 +17,19 @@ function leadAlert(name, phone, regarding) {
   } catch (e) {}
 }
 
+// Saves a copy of every request in the private Google Sheet ("Requests" tab),
+// through the same Apps Script that receives the intake forms. Never blocks the form.
+var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec";
+function saveToSheet(formName, fields) {
+  try {
+    fetch(SHEET_ENDPOINT, {
+      method: "POST", mode: "no-cors", keepalive: true,
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ form_version: "request_v1", form: formName, page: window.location.pathname, fields: fields })
+    });
+  } catch (e) {}
+}
+
 (function () {
   "use strict";
 
@@ -343,6 +356,10 @@ function leadAlert(name, phone, regarding) {
     if (bot && bot.checked) return; // spam trap
 
     leadAlert(name, phone, "Contact form, " + (value("type") || "general"));
+    saveToSheet("Contact form", {
+      name: name, phone: phone, regarding: value("type"), email: value("email"),
+      location: value("location"), date: value("date"), message: value("message")
+    });
 
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
@@ -427,6 +444,10 @@ function leadAlert(name, phone, regarding) {
       if (missing) { setNote(d.missing, "err"); missing.focus(); return; }
 
       leadAlert(val("name"), val("phone"), d.subject);
+      saveToSheet("Quick call-back form", {
+        name: val("name"), phone: val("phone"), regarding: d.subject,
+        best_time: val("best_time"), message: val("message")
+      });
 
       if (btn) { btn.disabled = true; btn.textContent = d.sending; }
       fetch("https://api.web3forms.com/submit", {
