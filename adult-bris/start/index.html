@@ -87,6 +87,7 @@ footer a{color:var(--navy)}
     <div class="hint" style="margin:6px 0 0 28px">The usual fee is $1,800–$2,000. If cost is a real obstacle, we can talk privately about a sponsor.</div></div>
 
   <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+  <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="hp_x7q" tabindex="-1" autocomplete="one-time-code"></label></div>
   <button type="submit" id="send">Send — Rabbi Ekstein will call you</button>
   <p class="hint" style="margin-top:12px;text-align:center">Prefer to call now? <a href="tel:+18454678595">845-467-8595</a></p>
 </form>
@@ -106,6 +107,32 @@ footer a{color:var(--navy)}
 const ACCESS_KEY = "1954278b-98e4-4242-99fc-b24f83e7f386";
 
 const f = document.getElementById('f');
+/* Spam guard (same rules as the rest of the site): trap filled -> dropped;
+   link or sales wording, or sent within 3 seconds -> Sheet only, marked
+   POSSIBLE SPAM, no call, no email; same phone within 10 minutes -> no 2nd call. */
+const PAGE_OPENED = Date.now();
+const SPAM_SALES = /\b(freelanc\w*|seo|backlinks?|link building|guest posts?|web ?design\w*|website (design|redesign|development)|redesign your (site|website)|rank(ing)? your (site|website)|first page of google|google ranking|digital marketing|marketing (services|agency|campaign)|lead generation|virtual assistant|content writ\w*|writing (services|projects)|app development|social media (management|marketing)|calendly|outsourc\w*|crypto|bitcoin|loan offer)\b/i;
+const SPAM_LINK = /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|info|io|co|biz|xyz|ly|site|online|app)\/)/i;
+function spamCheck(trap, text){
+  if(trap) return 'trap';
+  text = String(text||'').replace(/\S+@\S+\.\S+/g,' ');
+  if(SPAM_LINK.test(text)) return 'link in message';
+  if(SPAM_SALES.test(text)) return 'sales wording';
+  if(Date.now()-PAGE_OPENED < 3000) return 'sent too fast';
+  return '';
+}
+function alreadySent(phone){
+  const key='bm_sent_'+String(phone||'').replace(/\D/g,''); if(key==='bm_sent_') return false;
+  const now=Date.now(); let last=0;
+  try{ last=Number(localStorage.getItem(key))||0; localStorage.setItem(key,String(now)); }catch(e){}
+  return now-last < 600000;
+}
+const SHEET = 'https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec';
+function toSheet(formName, fields){
+  try{ fetch(SHEET,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify({form_version:'request_v1', form:formName, page:location.pathname, fields})}); }catch(e){}
+}
+function showDone(){ f.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0}); }
 const val = n => { const c=f.querySelector(`[name="${n}"]:checked`); return c?c.value:''; };
 f.addEventListener('change', e=>{
   document.getElementById('neither').hidden = val('Background')!=='Neither';
@@ -127,27 +154,31 @@ f.addEventListener('submit', async e=>{
 
   const btn=document.getElementById('send'); btn.disabled=true; btn.textContent='Sending…';
   const data = Object.fromEntries(new FormData(f));
+  const trap = !!(data.botcheck || data.hp_x7q);
+  delete data.botcheck; delete data.hp_x7q;
   data.access_key = ACCESS_KEY;
   data.subject = `New call request: ${data.Name} — ${data.When}`;
   data.from_name = 'bris-milah.com';
-  if(!data.botcheck){
+  const regarding = `Adult call request, ${val('Background') || 'not sure'}`;
+  const fields = {name:data.Name, phone:data.Phone, regarding};
+  Object.keys(data).forEach(k=>{ if(!/^(Name|Phone|access_key|subject|from_name)$/.test(k)) fields[k]=data[k]; });
+
+  const spam = spamCheck(trap, [data.Name, data['Call times'], data.City, data['Referred by']].join(' '));
+  if(spam==='trap'){ showDone(); return; }
+  if(spam){ toSheet("Let's speak form - POSSIBLE SPAM ("+spam+")", fields); showDone(); return; }
+  if(!alreadySent(data.Phone)){
     // Phone-call alert (says what it is about) and a copy in the private Google Sheet
-    const regarding = `Adult call request, ${val('Background') || 'not sure'}`;
     try{
       fetch('https://lead-alert-4146.twil.io/new-lead',{method:'POST',mode:'no-cors',keepalive:true,
         body:new URLSearchParams({name:data.Name||'', phone:data.Phone||'', regarding})});
-      const fields = {name:data.Name, phone:data.Phone, regarding};
-      Object.keys(data).forEach(k=>{ if(!/^(Name|Phone|access_key|subject|from_name|botcheck)$/.test(k)) fields[k]=data[k]; });
-      fetch('https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec',{
-        method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify({form_version:'request_v1', form:"Let's speak form", page:location.pathname, fields})});
     }catch(err){}
+    toSheet("Let's speak form", fields);
   }
   try{
     if(ACCESS_KEY.startsWith('PASTE')) throw new Error('No access key set yet');
     const r = await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
     const j = await r.json(); if(!j.success) throw new Error(j.message||'failed');
-    f.style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo({top:0});
+    showDone();
   }catch(err){
     btn.disabled=false; btn.textContent='Send — Rabbi Ekstein will call you';
     alert('Sorry, the message could not be sent. Please call 845-467-8595.');

@@ -30,6 +30,44 @@ function saveToSheet(formName, fields) {
   } catch (e) {}
 }
 
+
+/* ---------- Spam guard for every website form ----------
+   Real request:      phone call + copy in the Sheet + email, as before.
+   Possible spam:     a link or sales wording in the message, or sent within
+                      3 seconds of opening the page. Saved in the Sheet marked
+                      "POSSIBLE SPAM" so nothing real is lost; no call, no email.
+   Hidden trap filled: thrown away (only robots fill it).
+   Same phone again within 10 minutes: no second call or Sheet row. */
+var PAGE_OPENED = Date.now();
+var SPAM_SALES = /\b(freelanc\w*|seo|backlinks?|link building|guest posts?|web ?design\w*|website (design|redesign|development)|redesign your (site|website)|rank(ing)? your (site|website)|first page of google|google ranking|digital marketing|marketing (services|agency|campaign)|lead generation|virtual assistant|content writ\w*|writing (services|projects)|app development|social media (management|marketing)|calendly|outsourc\w*|crypto|bitcoin|loan offer)\b/i;
+var SPAM_LINK = /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|info|io|co|biz|xyz|ly|site|online|app)\/)/i;
+
+function spamCheck(trapFilled, text) {
+  if (trapFilled) return "trap";
+  text = String(text || "").replace(/\S+@\S+\.\S+/g, " "); // an email address is not a link
+  if (SPAM_LINK.test(text)) return "link in message";
+  if (SPAM_SALES.test(text)) return "sales wording";
+  if (Date.now() - PAGE_OPENED < 3000) return "sent too fast";
+  return "";
+}
+
+var _sentPhones = {};
+function alreadySent(phone) {
+  var key = "bm_sent_" + String(phone || "").replace(/\D/g, "");
+  if (key === "bm_sent_") return false;
+  var now = Date.now(), last = _sentPhones[key] || 0;
+  try { last = Math.max(last, Number(localStorage.getItem(key)) || 0); } catch (e) {}
+  _sentPhones[key] = now;
+  try { localStorage.setItem(key, String(now)); } catch (e) {}
+  return now - last < 10 * 60 * 1000;
+}
+
+function trapFilled(scope) {
+  var hp = scope.querySelector('[name="hp_x7q"]');
+  var cb = scope.querySelector('[name="botcheck"]');
+  return !!((hp && hp.value) || (cb && cb.checked));
+}
+
 (function () {
   "use strict";
 
@@ -257,6 +295,12 @@ function saveToSheet(formName, fields) {
         if (babyNote) { babyNote.textContent = "Please fill in at least one answer first."; babyNote.className = "form-note err"; }
         return;
       }
+      var babySpam = spamCheck(trapFilled(babyForm), answers["Anything else"] || "");
+      if (babySpam === "trap") {
+        if (babyNote) { babyNote.textContent = "Thank you, it was sent. I will call you soon."; babyNote.className = "form-note ok"; }
+        return;
+      }
+      if (babySpam) answers["POSSIBLE SPAM"] = babySpam;
       var btn = document.getElementById("babyDirect");
       if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
       fetch("https://script.google.com/macros/s/AKfycbwtSL9oF1nB6WRKwyZmYPv6NQt9CscyQSFUzLEWMjAKZp-NnurLRgs3wAYX9zDjbrpU/exec", {
@@ -285,6 +329,9 @@ function saveToSheet(formName, fields) {
       var phoneEl = document.getElementById("b_phone");
       var phone = phoneEl ? phoneEl.value.trim() : "";
       if (!phone || !babyMessage()) return;
+      var notesEl = document.getElementById("b_notes");
+      if (spamCheck(trapFilled(babyForm), notesEl ? notesEl.value : "")) return;
+      if (alreadySent(phone)) return;
       var nameEl = document.getElementById("b_parent");
       var params = new URLSearchParams({
         name: nameEl ? nameEl.value.trim() : "",
@@ -352,16 +399,29 @@ function saveToSheet(formName, fields) {
       value("message") || "-"
     ];
 
-    var bot = document.getElementById("botcheck");
-    if (bot && bot.checked) return; // spam trap
-
-    leadAlert(name, phone, "Contact form, " + (value("type") || "general"));
-    saveToSheet("Contact form", {
+    var btn = form.querySelector('button[type="submit"]');
+    var showSent = function () {
+      form.reset();
+      setNote("Thank you, your message was sent. I will call you back soon.", "ok");
+      if (btn) { btn.disabled = true; btn.textContent = "Message sent"; }
+    };
+    var sheetFields = {
       name: name, phone: phone, regarding: value("type"), email: value("email"),
       location: value("location"), date: value("date"), message: value("message")
-    });
+    };
 
-    var btn = form.querySelector('button[type="submit"]');
+    var spam = spamCheck(trapFilled(form), [name, value("location"), value("message")].join(" "));
+    if (spam === "trap") { showSent(); return; }
+    if (spam) {
+      saveToSheet("Contact form - POSSIBLE SPAM (" + spam + ")", sheetFields);
+      showSent();
+      return;
+    }
+    if (!alreadySent(phone)) {
+      leadAlert(name, phone, "Contact form, " + (value("type") || "general"));
+      saveToSheet("Contact form", sheetFields);
+    }
+
     if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
     setNote("Sending your message...", "");
 
@@ -433,8 +493,6 @@ function saveToSheet(formName, fields) {
     };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var bot = field("botcheck");
-      if (bot && bot.checked) return;
       var missing = null;
       ["name", "phone"].forEach(function (n) {
         var el = field(n);
@@ -443,11 +501,26 @@ function saveToSheet(formName, fields) {
       });
       if (missing) { setNote(d.missing, "err"); missing.focus(); return; }
 
-      leadAlert(val("name"), val("phone"), d.subject);
-      saveToSheet("Quick call-back form", {
+      var showSent = function () {
+        form.reset();
+        setNote(d.ok, "ok");
+        if (btn) { btn.disabled = true; btn.textContent = d.sent; }
+      };
+      var sheetFields = {
         name: val("name"), phone: val("phone"), regarding: d.subject,
         best_time: val("best_time"), message: val("message")
-      });
+      };
+      var spam = spamCheck(trapFilled(form), [val("name"), val("best_time"), val("message")].join(" "));
+      if (spam === "trap") { showSent(); return; }
+      if (spam) {
+        saveToSheet("Quick call-back form - POSSIBLE SPAM (" + spam + ")", sheetFields);
+        showSent();
+        return;
+      }
+      if (!alreadySent(val("phone"))) {
+        leadAlert(val("name"), val("phone"), d.subject);
+        saveToSheet("Quick call-back form", sheetFields);
+      }
 
       if (btn) { btn.disabled = true; btn.textContent = d.sending; }
       fetch("https://api.web3forms.com/submit", {

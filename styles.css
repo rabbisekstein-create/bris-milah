@@ -844,3 +844,6 @@ p{ margin:0 0 1.15em; }
 .prose > .callout:first-child, .wrap > .callout:first-child{ margin-top:0; margin-bottom:28px; }
 .cta-band p a{ color:#fff; }
 .cta-band .cta-links{ margin-top:10px; }
+
+/* Hidden spam-trap field: off screen, never seen by people */
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
