@@ -157,6 +157,14 @@
   ]
 }
 </script>
+<style>
+.sleeve-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0 26px}
+.sleeve-fig{margin:0;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 16px;text-align:center}
+.sleeve-fig svg{width:100%;height:auto;display:block;margin-bottom:10px}
+.sleeve-fig figcaption{font-size:.92rem;line-height:1.5;color:var(--body)}
+.sleeve-fig figcaption strong{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+@media (max-width:640px){.sleeve-grid{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}}
+</style>
 </head>
 <body class="page-other-services group-services">
 
@@ -238,7 +246,48 @@
     <div class="wrap narrow prose">
       <aside class="callout" role="note"><strong>General information only</strong>Every case is different and is decided in person, according to halacha. This page gives general information only.</aside>
       <h2 class="reveal">When a brit may not be complete</h2>
-      <p class="reveal"><strong>Too much skin was left.</strong> If the head is still largely covered, the brit may not be complete according to halacha, even if it was done by a mohel at a proper bris. This is more common than people think.</p>
+      <p class="reveal"><strong>First, a reassurance.</strong> If your brit was done by a qualified mohel and checked afterwards to make sure it healed well, it is done. There is no need to keep examining it or worrying about it for the rest of your life. A real question only arises when it was not done properly, or when nobody ever checked afterwards that it healed as it should.</p>
+      <p class="reveal"><strong>A simple way to picture it.</strong> Think of a hand in a sleeve: the hand stands for the head, and the sleeve for the skin over it.</p>
+      <div class="sleeve-grid reveal">
+        <figure class="sleeve-fig">
+          <svg viewBox="0 0 240 130" role="img" aria-label="Not circumcised">
+            <rect x="0" y="50" width="130" height="32" rx="8" fill="#e9c9ac"/>
+            <rect x="112" y="42" width="58" height="50" rx="12" fill="#e9c9ac"/>
+            <rect x="128" y="22" width="13" height="40" rx="6.5" fill="#e9c9ac" transform="rotate(38 134 50)"/>
+            <rect x="160" y="44" width="48" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="56" width="58" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="68" width="55" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="80" width="44" height="10.5" rx="5.25" fill="#e9c9ac"/>
+            <path d="M160 55 v-1 M160 67 v-1 M160 79 v-1" stroke="#cfa98a" stroke-width="2" stroke-linecap="round"/>
+            <rect x="-10" y="16" width="242" height="96" rx="12" fill="#16233d"/>
+            <rect x="225" y="16" width="7" height="96" rx="3" fill="#2a3c63"/>
+          </svg>
+          <figcaption><strong>Not circumcised</strong>The skin covers the head completely.</figcaption>
+        </figure>
+        <figure class="sleeve-fig">
+          <svg viewBox="0 0 240 130" role="img" aria-label="Partly covered">
+            <rect x="0" y="50" width="130" height="32" rx="8" fill="#e9c9ac"/>
+            <rect x="112" y="42" width="58" height="50" rx="12" fill="#e9c9ac"/>
+            <rect x="128" y="22" width="13" height="40" rx="6.5" fill="#e9c9ac" transform="rotate(38 134 50)"/>
+            <rect x="160" y="44" width="48" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="56" width="58" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="68" width="55" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="80" width="44" height="10.5" rx="5.25" fill="#e9c9ac"/>
+            <path d="M160 55 v-1 M160 67 v-1 M160 79 v-1" stroke="#cfa98a" stroke-width="2" stroke-linecap="round"/>
+            <rect x="-10" y="16" width="196" height="96" rx="12" fill="#16233d"/>
+            <rect x="179" y="16" width="7" height="96" rx="3" fill="#2a3c63"/>
+          </svg>
+          <figcaption><strong>Partly covered</strong>Part of the head looks covered. Worth asking a mohel.</figcaption>
+        </figure>
+        <figure class="sleeve-fig">
+          <svg viewBox="0 0 240 130" role="img" aria-label="Complete">
+            <rect x="0" y="50" width="130" height="32" rx="8" fill="#e9c9ac"/>
+            <rect x="112" y="42" width="58" height="50" rx="12" fill="#e9c9ac"/>
+            <rect x="128" y="22" width="13" height="40" rx="6.5" fill="#e9c9ac" transform="rotate(38 134 50)"/>
+            <rect x="160" y="44" width="48" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="56" width="58" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="68" width="55" height="10.5" rx="5.25" fill="#e9c9ac"/><rect x="160" y="80" width="44" height="10.5" rx="5.25" fill="#e9c9ac"/>
+            <path d="M160 55 v-1 M160 67 v-1 M160 79 v-1" stroke="#cfa98a" stroke-width="2" stroke-linecap="round"/>
+            <rect x="-10" y="16" width="126" height="96" rx="12" fill="#16233d"/>
+            <rect x="109" y="16" width="7" height="96" rx="3" fill="#2a3c63"/>
+          </svg>
+          <figcaption><strong>Complete</strong>The head is fully uncovered.</figcaption>
+        </figure>
+      </div>
+      <p class="reveal">A picture like this is only a rough guide. How it looks at rest is not the whole picture: build, size, and how the brit was done in the first place all make a difference. If it was done by an experienced mohel, what looks like extra skin is very often perfectly fine. The only way to know is to ask a mohel, who can tell you in person.</p>
+      <p class="reveal"><strong>Too much skin was left.</strong> If the head still looks largely covered, it is worth having it checked. Occasionally a brit was not done fully, even at a proper bris; more often, it turns out to be fine.</p>
       <p class="reveal"><strong>The skin healed back.</strong> Sometimes the brit was done properly, but during healing the skin re-attached or grew forward again.</p>
       <p class="reveal"><strong>It was done in a hospital.</strong> A circumcision done by a doctor as a medical procedure is generally not a brit milah. In most cases a <a href="/hatafas-dam-bris/">hatafas dam bris</a> completes it, and if too much skin was left, that is corrected at the same time.</p>
       <p class="reveal"><strong>And sometimes it is fine.</strong> Quite often, what looks different turns out to be perfectly complete, and men are relieved to hear it from someone who has nothing to gain by saying so.</p>
