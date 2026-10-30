@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Задать вопрос анонимно | Раввин Экштейн</title>
+<meta name="description" content="Задайте раввину Шломо Экштейну, моэлю, личный вопрос о брит-миле. Без имени, почты и телефона. Ни один вопрос не бывает слишком мелким или неловким.">
+<meta name="theme-color" content="#16233d">
+<link rel="canonical" href="https://bris-milah.com/ru/vopros/">
+<link rel="alternate" hreflang="en" href="https://bris-milah.com/adult-bris/ask/">
+<link rel="alternate" hreflang="es" href="https://bris-milah.com/es/pregunta/">
+<link rel="alternate" hreflang="ru" href="https://bris-milah.com/ru/vopros/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Rabbi Shlome Ekstein, Certified Mohel">
+<meta property="og:title" content="Задать вопрос анонимно | Раввин Экштейн">
+<meta property="og:description" content="Задайте раввину Шломо Экштейну, моэлю, личный вопрос о брит-миле. Без имени, почты и телефона. Ни один вопрос не бывает слишком мелким или неловким.">
+<meta property="og:image" content="https://bris-milah.com/assets/og-image.jpg">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<!-- Marks that JS is available. Without it, nothing is ever hidden. -->
+<script>document.documentElement.className += " js";</script>
+<script data-goatcounter="https://brismilah.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+.ask-form .choice{display:flex;gap:12px;align-items:flex-start;margin:10px 0;font-size:.98rem;color:var(--ink);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer}
+.ask-form .choice input{width:auto;margin-top:7px;flex:none}
+.ask-form fieldset{border:0;padding:0;margin:0 0 18px}
+.ask-form legend{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);margin-bottom:6px;padding:0}
+.hint{font-size:.88rem;color:var(--ink-soft);margin:8px 0 0}
+.promise{background:var(--cream-2);border-left:3px solid var(--gold);padding:14px 18px;margin:22px 0;font-size:.95rem}
+.promise p{margin:0 0 8px}.promise p:last-child{margin:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.9rem;letter-spacing:.12em;color:var(--ink);background:var(--cream-2);display:inline-block;padding:10px 20px;border-radius:var(--radius);margin:4px 0 12px}
+.box-gap{margin-top:36px}
+.small-note{font-size:.88rem;color:var(--ink-soft);font-style:italic;margin-top:32px}
+.thread .msg{border-radius:var(--radius);padding:14px 18px;margin:14px 0}
+.thread .you{background:var(--white);border:1px solid var(--line);margin-right:8%}
+.thread .rabbi{background:var(--cream-2);border-left:3px solid var(--gold);margin-left:8%}
+.thread .who{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
+.thread .text{white-space:pre-wrap;color:var(--ink)}
+.waiting{font-style:italic;color:var(--ink-soft)}
+</style>
+</head>
+<body class="page-other-services group-services">
+
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/ru/">
+      <span class="brand-mark" aria-hidden="true">ב״ה</span>
+      <span class="brand-text">
+        <strong>Раввин Шломо Экштейн</strong>
+        <em>Сертифицированный моэль</em>
+      </span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Меню">
+      <a class="nav-link" href="/ru/#kak">Как это проходит</a>
+      <a class="nav-link" href="/ru/#voprosy">Вопросы</a>
+      <a class="nav-link" href="/adult-bris/ask/" hreflang="en" lang="en">English</a>
+      <a class="nav-cta" href="tel:+18454678595">Позвонить</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Навигация"><a href="/ru/">Брит-мила для взрослых</a> <span>/</span> Анонимный вопрос</nav>
+      <p class="eyebrow">Конфиденциально и анонимно</p>
+      <h1>Задайте вопрос анонимно</h1>
+      <p class="lede">Ни один вопрос не бывает слишком мелким или слишком неловким.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap narrow">
+      <form class="contact-form ask-form" id="askForm" novalidate>
+        <p>Напишите вопрос своими словами — можно по-русски. Не нужно указывать имя, адрес электронной почты или номер телефона.</p>
+
+        <div class="field">
+          <label for="question">Ваш вопрос</label>
+          <textarea id="question" name="question" rows="6" required placeholder="Напишите всё, что вас волнует. Неправильных вопросов не бывает."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="context">Что поможет мне лучше понять ситуацию <span class="opt">(необязательно)</span></label>
+          <textarea id="context" name="context" rows="3" placeholder="Например: ваш примерный возраст, была ли у вас брит-мила в младенчестве или обрезание в больнице."></textarea>
+        </div>
+
+        <fieldset>
+          <legend>Как вы хотите получить мой ответ?</legend>
+          <label class="choice"><input type="radio" name="reply_method" value="private code" checked> <span>Здесь, на сайте, по личному коду. Контактные данные не нужны, и мы сможем продолжить переписку.</span></label>
+          <label class="choice"><input type="radio" name="reply_method" value="whatsapp"> <span>Лично в WhatsApp</span></label>
+          <label class="choice"><input type="radio" name="reply_method" value="email"> <span>Лично по электронной почте</span></label>
+          <label class="choice"><input type="radio" name="reply_method" value="no reply"> <span>Ответ не нужен</span></label>
+        </fieldset>
+
+        <div class="field" id="contactWrap" hidden>
+          <label for="contact" id="contactLabel">Ваш номер WhatsApp или e-mail</label>
+          <input id="contact" name="contact" type="text">
+          <p class="hint" id="emailHint" hidden>Если не хотите использовать свою обычную почту, можно завести новый адрес, в котором нет вашего имени.</p>
+        </div>
+
+        <label class="choice"><input type="checkbox" id="mayPublish" name="may_publish" value="yes"> <span>Можно опубликовать мой вопрос на сайте в виде короткого анонимного ответа, убрав всё, что может меня выдать. <span class="opt">(необязательно)</span></span></label>
+
+        <div class="hp" aria-hidden="true"><label>Оставьте это поле пустым <input type="text" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="promise">
+          <p>Ваш вопрос остаётся конфиденциальным, и каждый вопрос я читаю лично. Он никогда не будет передан или опубликован с вашим именем, контактами или чем-либо, что может вас выдать. Если ваш вопрос может помочь другим мужчинам, я могу ответить на него на сайте в короткой анонимной форме — но только если вы отметили пункт выше, и только убрав всё, что может вас выдать.</p>
+          <p>Пожалуйста, не присылайте фотографии — ни здесь, ни в WhatsApp, ни по почте. Если мне нужно что-то увидеть, мы договоримся о личной, деликатной встрече.</p>
+          <p>Эта форма не для неотложных медицинских ситуаций. По любым медицинским вопросам обращайтесь к своему врачу.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="askBtn">Отправить вопрос анонимно</button>
+        <p class="form-note" id="askNote" aria-live="polite"></p>
+      </form>
+
+      <div class="contact-form" id="thanks" hidden>
+        <h2 class="form-title">Спасибо. Ваш вопрос дошёл до меня.</h2>
+        <p>Чтобы спросить, нужна смелость, и я рад, что вы решились.</p>
+        <div id="codeBox" hidden>
+          <p>Ваш личный код:</p>
+          <p class="code" id="codeDisplay"></p>
+          <p><strong>Сохраните этот код прямо сейчас</strong>, например сделайте снимок экрана. Только по нему можно открыть вашу переписку. Я не смогу найти его за вас, потому что не знаю, кто вы.</p>
+          <p>Вернитесь через несколько дней и откройте переписку с этим кодом. Там будет мой ответ, и вы сможете ответить мне или добавить подробности, если я попрошу, — по-прежнему без имени.</p>
+          <p><a class="btn btn-ghost" id="openConv" href="/ru/razgovor/">Открыть мою переписку</a></p>
+        </div>
+        <p id="thanksContact" hidden>Я отвечу вам лично, обычно в течение нескольких дней.</p>
+        <p>Если хотите поговорить сейчас, напишите мне в WhatsApp: <a href="https://wa.me/13478316196" target="_blank" rel="noopener">+1 347-831-6196</a>.</p>
+        <p><em>Раввин Шломо Экштейн</em></p>
+      </div>
+
+      <div class="contact-form box-gap">
+        <h2 class="form-title">Уже задали вопрос?</h2>
+        <p>Откройте свою переписку с помощью полученного кода.</p>
+        <p><a class="btn btn-ghost" href="/ru/razgovor/">Открыть мою переписку</a></p>
+      </div>
+
+      <p class="small-note">Я служу моэлем в религиозном качестве. По любым медицинским вопросам обращайтесь к своему врачу.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-cols">
+    <div class="footer-col">
+      <p class="footer-brand">Раввин Шломо Экштейн</p>
+      <p class="footer-sub">Сертифицированный моэль</p>
+      <p class="footer-blurb">
+        Брит-мила для взрослых и младенцев. Монро, штат Нью-Йорк — Нью-Йорк,
+        Нью-Джерси и вся Америка, а также поездки в другие страны.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h3>Связь</h3>
+      <ul class="footer-links">
+        <li><a href="tel:+18454678595">845-467-8595</a></li>
+        <li><a href="https://wa.me/13478316196" target="_blank" rel="noopener">WhatsApp 347-831-6196</a></li>
+        <li><a href="mailto:rabbisekstein@bris-milah.com">rabbisekstein@bris-milah.com</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>English</h3>
+      <ul class="footer-links">
+        <li><a href="/" lang="en">Home</a></li>
+        <li><a href="/adult-bris/" lang="en">Adult Brit Milah</a></li>
+        <li><a href="/faq/" lang="en">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-legal">
+    <p>© <span id="year"></span> Раввин Шломо Экштейн. Все права защищены.</p>
+    <p>Информация на сайте носит общий характер и не является медицинской консультацией.</p>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:+18454678595">
+    <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"></path></svg>
+    Позвонить
+  </a>
+  <a href="https://wa.me/13478316196" target="_blank" rel="noopener">
+    <svg viewbox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.5.5 0 0 0 0-.5c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4 5.3 5.3 0 0 0 3.2.5 2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2z"></path></svg>
+    WhatsApp
+  </a>
+</div>
+
+<script>
+(function () {
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbxZ3-mL67KkS5928ykDOAW5Jhqx3OHyCXbh4pZlcpamOWOEln2-RlH-qhju93xxMw1l/exec";
+  var form = document.getElementById("askForm");
+  var wrap = document.getElementById("contactWrap");
+  var label = document.getElementById("contactLabel");
+  var input = document.getElementById("contact");
+  var emailHint = document.getElementById("emailHint");
+  var note = document.getElementById("askNote");
+  var btn = document.getElementById("askBtn");
+
+  function method() { return form.querySelector('input[name="reply_method"]:checked').value; }
+  function updateContact() {
+    var m = method();
+    if (m === "whatsapp" || m === "email") {
+      wrap.hidden = false; input.required = true;
+      label.textContent = m === "whatsapp" ? "Ваш номер WhatsApp" : "Ваш адрес электронной почты";
+      input.type = m === "email" ? "email" : "tel";
+      emailHint.hidden = m !== "email";
+    } else {
+      wrap.hidden = true; input.required = false; input.value = "";
+    }
+  }
+  form.querySelectorAll('input[name="reply_method"]').forEach(function (r) { r.addEventListener("change", updateContact); });
+  updateContact();
+
+  function fail(text) {
+    note.className = "form-note err";
+    note.innerHTML = text || 'Извините, вопрос не отправлен. Попробуйте ещё раз или напишите мне в WhatsApp: <a href="https://wa.me/13478316196" target="_blank" rel="noopener">+1 347-831-6196</a>.';
+    btn.disabled = false; btn.textContent = "Отправить вопрос анонимно";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var q = document.getElementById("question").value.trim();
+    if (!q) { fail("Сначала напишите вопрос."); return; }
+    if (input.required && !input.value.trim()) { fail("Укажите, куда отправить ответ, или выберите другой вариант."); return; }
+    var m = method();
+    var data = {
+      action: "ask",
+      question: q,
+      context: document.getElementById("context").value.trim(),
+      reply_method: m,
+      contact: input.value.trim(),
+      may_publish: document.getElementById("mayPublish").checked,
+      botcheck: document.getElementById("botcheck").value,
+      lang: "ru"
+    };
+    btn.disabled = true; btn.textContent = "Отправка...";
+    note.className = "form-note"; note.textContent = "";
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (!res || !res.ok) throw new Error("fail");
+        form.hidden = true;
+        var t = document.getElementById("thanks");
+        t.hidden = false;
+        if (m === "private code" && res.code) {
+          document.getElementById("codeDisplay").textContent = res.code;
+          document.getElementById("codeBox").hidden = false;
+          document.getElementById("openConv").addEventListener("click", function () {
+            try { sessionStorage.setItem("convCode", res.code); } catch (err) {}
+          });
+        } else if (m !== "no reply") {
+          document.getElementById("thanksContact").hidden = false;
+        }
+        t.scrollIntoView({ behavior: "smooth", block: "start" });
+      })
+      .catch(function () { fail(); });
+  });
+})();
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
