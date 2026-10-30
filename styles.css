@@ -635,6 +635,8 @@ p{ margin:0 0 1.15em; }
   color:var(--gold-light); font-weight:600; margin:2px 0 16px;
 }
 .footer-blurb{ font-size:.86rem; line-height:1.7; margin:0; max-width:38ch; }
+.footer-blurb a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(135,148,173,.45); text-underline-offset:2px; }
+.footer-blurb a:hover{ color:var(--gold-light); }
 .footer-col h3{
   font-family:var(--sans); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
   color:#fff; font-weight:600; margin-bottom:16px;
