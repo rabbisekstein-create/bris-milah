@@ -405,9 +405,14 @@ function trapFilled(scope) {
       setNote("Thank you, your message was sent. I will call you back soon.", "ok");
       if (btn) { btn.disabled = true; btn.textContent = "Message sent"; }
     };
+    var smsBox = document.getElementById("sms_consent");
+    var smsConsent = smsBox && smsBox.checked
+      ? "Yes - checked the text-message box on " + new Date().toISOString()
+      : "No";
     var sheetFields = {
       name: name, phone: phone, regarding: value("type"), email: value("email"),
-      location: value("location"), date: value("date"), message: value("message")
+      location: value("location"), date: value("date"), message: value("message"),
+      sms_consent: smsConsent
     };
 
     var spam = spamCheck(trapFilled(form), [name, value("location"), value("message")].join(" "));
@@ -436,6 +441,7 @@ function trapFilled(scope) {
       location: value("location") || "-",
       date: value("date") || "-",
       message: value("message") || "-",
+      sms_consent: smsConsent,
       page: window.location.pathname
     };
 
