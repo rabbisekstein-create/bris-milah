@@ -238,6 +238,12 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="4" placeholder="Anything you would like me to know."></textarea>
         </div>
+        <div class="field field-consent">
+          <label for="sms_consent" style="display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:0.9em;line-height:1.5;cursor:pointer;">
+            <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" style="width:auto;margin-top:4px;flex:0 0 auto;">
+            <span>I agree to receive text messages from Rabbi Shlome Ekstein (Bris Milah) about my inquiry and scheduling. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not required to submit this form. See the <a href="/terms/">Terms</a> and <a href="/privacy/">Privacy Policy</a>.</span>
+          </label>
+        </div>
         <button class="btn btn-primary btn-block" type="submit">Send message</button>
         <div class="hp-field" aria-hidden="true"><label>Leave this empty <input type="text" name="hp_x7q" tabindex="-1" autocomplete="one-time-code"></label></div>
         <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
