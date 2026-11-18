@@ -1,0 +1,68 @@
+# Tells Bing, Yandex and other IndexNow search engines about new or changed pages.
+# Runs on every push to main. To resubmit every page in the sitemap, include
+# [indexnow-all] in the commit message, or run it by hand from the Actions tab.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    env:
+      KEY: b1b804aa64935af1f767053f53385466
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Work out which pages to submit
+        run: |
+          HOST=$(tr -d ' \r\n' < CNAME)
+          echo "HOST=$HOST" >> $GITHUB_ENV
+          grep -o '<loc>[^<]*</loc>' sitemap.xml | sed 's/<\/\?loc>//g' | sort -u > all.txt
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || git log -1 --format=%B | grep -q '\[indexnow-all\]'; then
+            cp all.txt urls.txt
+          else
+            : > urls.txt
+            # Pages whose HTML changed in this push
+            git diff --name-only HEAD~1 HEAD -- '*.html' | while read -r f; do
+              p="/${f%index.html}"
+              grep -Fx "https://$HOST$p" all.txt >> urls.txt || true
+              grep -Fx "https://$HOST${p%.html}/" all.txt >> urls.txt || true
+            done
+            # Pages newly added to the sitemap
+            git diff HEAD~1 HEAD -- sitemap.xml | grep '^+' | grep -o '<loc>[^<]*</loc>' | sed 's/<\/\?loc>//g' >> urls.txt || true
+            sort -u urls.txt -o urls.txt
+          fi
+          echo "Pages to submit:"; cat urls.txt
+
+      - name: Wait for the site to update
+        run: |
+          [ -s urls.txt ] || exit 0
+          for i in $(seq 1 40); do
+            if [ "$(curl -s https://$HOST/$KEY.txt)" = "$KEY" ]; then
+              sleep 60; exit 0
+            fi
+            sleep 15
+          done
+          echo "Key file never appeared on the live site"; exit 1
+
+      - name: Send to IndexNow
+        run: |
+          [ -s urls.txt ] || { echo "Nothing to submit"; exit 0; }
+          python3 - <<'PY'
+          import json, os
+          urls = [u for u in open("urls.txt").read().split() if u]
+          host, key = os.environ["HOST"], os.environ["KEY"]
+          json.dump({"host": host, "key": key,
+                     "keyLocation": f"https://{host}/{key}.txt",
+                     "urlList": urls}, open("body.json", "w"))
+          PY
+          for ep in https://api.indexnow.org/indexnow https://yandex.com/indexnow https://www.bing.com/indexnow; do
+            code=$(curl -s -o resp.txt -w '%{http_code}' -X POST "$ep" \
+              -H 'Content-Type: application/json; charset=utf-8' --data @body.json)
+            echo "$ep -> HTTP $code"; cat resp.txt; echo
+          done
